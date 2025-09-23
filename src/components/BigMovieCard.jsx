@@ -7,7 +7,7 @@ const BigMovieCard = ({ movie }) => {
       <div className="">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          className="big-movie-card-img card-img" 
+          className="big-movie-card-img card-img"
           alt={movie.title}
         />
       </div>
@@ -17,12 +17,22 @@ const BigMovieCard = ({ movie }) => {
           <h2 className="card-title fw-bold">{movie.title}</h2>
         </div>
 
-        <p className="text-light fs-sml card-text small ff-text">{movie.overview}</p>
+        <p className="text-light fs-sml card-text small ff-text">
+          {movie.overview.length > 250
+            ? movie.overview.slice(0, 250) + "..."
+            : movie.overview}
+        </p>
         <div className="d-flex gap-2">
-          <button className="big-movie-overlay-btn1 btn btn-sm px-4 ff-text fs-sml" type="button">
+          <button
+            className="big-movie-overlay-btn1 btn btn-sm px-4 ff-text fs-sml"
+            type="button"
+          >
             <i className="bi bi-play-fill"></i> Play
           </button>
-          <button className="big-movie-overlay-btn2 btn btn-sm text-light px-2 ff-text fs-sml" type="button">
+          <button
+            className="big-movie-overlay-btn2 btn btn-sm text-light px-2 ff-text fs-sml"
+            type="button"
+          >
             <i className="bi bi-info-circle"></i> More Info
           </button>
         </div>

@@ -31,7 +31,7 @@ const NavBar = () => {
       >
         <div className="container-fluid">
           <Link
-            href="#"
+            to="/"
             className="navbar-brand my-netflix-red fw-800 navbar-brand-arc fs-3"
           >
             NETFLIX
@@ -78,16 +78,16 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-          <div class="btn-group d-md-none me-auto mx-2">
+          <div className="btn-group d-md-none me-auto mx-2">
             <button
-              class="btn-custom btn-sm dropdown-toggle fs-sml"
+              className="btn-custom btn-sm dropdown-toggle fs-sml"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
               Browse
             </button>
-            <ul class="dropdown-menu bg-black wdt-sml">
+            <ul className="dropdown-menu bg-black wdt-sml">
               <li className="link">
                 <Link to="/" className="dropdown-item text-light fs-sml">
                   Home

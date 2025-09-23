@@ -9,7 +9,7 @@
 .movie-card {
   /* border: 10px solid #e50914;
   border-radius: none; */
-  min-width: 45%;      
+  min-width: 60%;      
   max-width: 50%;
   flex: 0 0 auto;
 }
@@ -20,7 +20,7 @@
 
 .movie-card-poster-img {
   width: 100%;
-  height: 120px;
+  height: 100px;
   object-fit: cover;
   display: block;
 }
@@ -40,8 +40,8 @@
 
 .movie-card-banner-btm {
   position: absolute;
-  top: 85%;
-  left: 32%;
+  top: 82%;
+  left: 30%;
   font-size: 0.6em;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 600;

@@ -15,12 +15,12 @@ const MovieCard = ({ movie }) => {
           <img src="/" className="movie-card-brand-img2" alt="" />
         </div>
         <div className="">
-          <h6 className="movie-card-title card-title text-light">
+          <h6 className="movie-card-title card-title text-light d-none d-md-block">
             {movie.title}
           </h6>
         </div>
       </div>
-      <span className="movie-card-banner-btm fs-sml">New Season</span>
+      <span className="movie-card-banner-btm fs-sml">Recently Added</span>
     </div>
   );
 };

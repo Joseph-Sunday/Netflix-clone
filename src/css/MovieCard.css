@@ -1,0 +1,53 @@
+/* .p-abs {
+  position: absolute;
+  top: 64.5%;
+  padding-top: 0.5em;
+  z-index: 1;
+  text-shadow: 2px 2px 5px #001;
+} */
+
+.movie-card {
+  /* border: 10px solid #e50914;
+  border-radius: none; */
+  min-width: 45%;      
+  max-width: 50%;
+  flex: 0 0 auto;
+}
+
+.card {
+  border-radius: none;
+}
+
+.movie-card-poster-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.movie-card-brands {
+  position: absolute;
+}
+
+.movie-card-title {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 17, 0.971);
+}
+
+.movie-card-banner-btm {
+  position: absolute;
+  top: 85%;
+  left: 32%;
+  font-size: 0.6em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 600;
+  color: #fff;
+  background-color: #e50914;
+  padding: 0.2em 0.5em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}

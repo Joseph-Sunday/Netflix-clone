@@ -1,0 +1,27 @@
+.mt-lg {
+    margin-top: 5em;
+}
+
+.w-50 {
+    min-width: 80%;
+}
+
+.input-group input {
+    border: none;
+    border-radius: 1px;
+    color: #fff;
+    background-color: #1e1e1e;
+}
+
+.input-group input::placeholder {
+    color: #565656;
+}
+
+.input-group input:focus {
+    background-color: #1e1e1e;
+    color: #cfcfcf;
+}
+
+.input-group button {
+    color: #bcbcbc;
+}

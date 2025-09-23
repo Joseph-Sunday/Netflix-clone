@@ -1,0 +1,7 @@
+img {
+    min-width: 40%;
+    /* max-width: 50%; */
+    height: 100px;
+    object-fit: cover;
+    box-shadow: 3px 3px 15px 4px #000000e5;
+}

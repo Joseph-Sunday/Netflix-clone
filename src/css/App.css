@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+body {
+  background-color: #141414;
+}
+
+/* COLORS */
+.my-netflix-red {
+  color: #e50914;
+}
+
+.less-white {
+  color: #d9d9d9;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.bg-light-b {
+  color: #0000004d;
+}
+
+/* UTITLITY CLASSES */
+.fw-800 {
+  font-weight: 800;
+}
+
+.fs-sml {
+  font-size: 13px;
+}
+
+.ff-text {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.ff-head {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.btn-custom {
+  border: none;
+  padding: 0.5em;
+  color: #fff;
+  background: inherit;
+}
+
+.link a:hover {
+  background-color: #221f1f;
+  transition: background-color 0.3s ease;
+}
+
+.wdt-sml {
+  min-width: 7em;
+}
+
+.navbar-brand-arc {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 0 #000;
+  transform: scaleY(1.1);
+}
+
+.navbar-custom {
+  background-color: transparent;
+  transition: background-color 0.4s ease;
+  z-index: 1000;
+}
+
+.navbar-custom.scrolled {
+  background-color: #000;
+}
+
+/* Scroll-bar */
+.scroll-container {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Slick Arrows */
+

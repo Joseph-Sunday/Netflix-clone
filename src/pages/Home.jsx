@@ -14,8 +14,10 @@ import {
   getAwardWinners,
   getHollyWoodMovies,
   getAdultAnimations,
+  getTrendingToday,
 } from "../services/api";
 import { useEffect, useState } from "react";
+import TopTenMovieCard from "../components/TopTenMovieCard";
 
 // Shuffle Array (of Movies)
 function shuffleArray(array) {
@@ -287,6 +289,28 @@ const Home = () => {
     fetchAdultAnimations();
   }, []);
 
+  // Fetch Trending Movies
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [trendingMoviesError, setTrendingMoviesError] = useState(null);
+  const [trendingMoviesLoading, setTrendingMoviesLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTrendingMovies = async () => {
+      try {
+        const trendingMovies = await getTrendingToday();
+        console.log("Fetched Trending Movies:", trendingMovies);
+        setTrendingMovies(shuffleArray(trendingMovies.results || []));
+      } catch (err) {
+        console.log("failed to fetch Trending Movies:", err);
+        setTrendingMoviesError("failed to fetch Trending Movies");
+      } finally {
+        setTrendingMoviesLoading(false);
+      }
+    };
+
+    fetchTrendingMovies();
+  }, []);
+
   return (
     <>
       {/* Random Movie */}
@@ -544,6 +568,28 @@ const Home = () => {
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
               {adultAnimations.map((animation) => (
                 <MovieCard movie={animation} key={animation.id} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Trending Movies */}
+      <div>
+        {trendingMoviesLoading ? (
+          <p className="text-center text-light mt-lg fs-sml ff-text">
+            Loading Trending Movies..
+          </p>
+        ) : trendingMoviesError ? (
+          <p className="text-danger mt-lg fs-sml">{trendingMoviesError}</p>
+        ) : (
+          <div className="">
+            <h6 className="card-title text-light ff-text mx-3 mt-3">
+              Trending in Nigeria
+            </h6>
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {trendingMovies.slice(0, 10).map((movie, index) => (
+                <TopTenMovieCard movie={movie} key={movie.id} rank={index + 1} />
               ))}
             </div>
           </div>

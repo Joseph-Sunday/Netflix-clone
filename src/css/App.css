@@ -83,5 +83,15 @@ body {
   display: none;
 }
 
-/* Slick Arrows */
+/* Footer Styles */
 
+.footer-links .link {
+  text-decoration: none;
+  color: #a1a1a1;
+}
+
+.footer-links .link:hover{
+  text-decoration: underline;
+  color: #a1a1a1d8;
+  transition: color .2s ease;
+}

@@ -1,0 +1,16 @@
+
+.top-ten-movie-card {
+    min-width: 55%;
+}
+
+.top-ten-movie-card-rank {
+    position: absolute;
+    left: 1%;
+    font-size: 7em;
+    text-shadow: 10px 10px 10px #000;;
+}
+
+.top-ten-movie-card-poster {
+    width: 80%;
+    z-index: 1;
+}

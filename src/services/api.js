@@ -109,3 +109,11 @@ export const getAdultAnimations = async () => {
   );
   return response.json();
 };
+
+export const getTrendingToday = async () => {
+  const response = await fetch(
+    `${BASE_URL}/trending/all/day?api_key=${API_KEY}`
+  );
+  if(!response.ok) throw new Error("failed to fetch Trending movies")
+  return response.json();
+};

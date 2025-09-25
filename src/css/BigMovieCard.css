@@ -1,10 +1,11 @@
 .big-movie-card-container {
-  margin-top: 3.9em;
+  margin-top: 3em;
 }
 
 .big-movie-card-img {
   min-height: 500px;
   object-fit: cover;
+  object-position: 50% 10%;
 }
 
 .big-movie-card-overlay {
@@ -40,4 +41,14 @@
   color: #000;
   background: #3f3f3f8f;
   transition: background-color .3s ease-out;
+}
+
+/* Media Queries */
+
+@media(min-width: 768px) {
+  .big-movie-card-img {
+    min-height: 350px;
+    object-fit: cover;
+    object-position: 50% 10%;
+  }
 }

@@ -9,7 +9,7 @@ const RecommendedMovies = ({ movie }) => {
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
         />
-        <h4 className="text-center ff-head text-light fs-6">{movie.title}</h4>
+        <h4 className="text-center ff-head text-light recommended-movies-title">{movie.title}</h4>
         <button type="button" className="btn btn-sm text-light">
           <span className="bi bi-play-circle fs-3"></span>
         </button>

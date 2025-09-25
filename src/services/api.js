@@ -114,6 +114,34 @@ export const getTrendingToday = async () => {
   const response = await fetch(
     `${BASE_URL}/trending/all/day?api_key=${API_KEY}`
   );
-  if(!response.ok) throw new Error("failed to fetch Trending movies")
+  if (!response.ok) throw new Error("failed to fetch Trending movies");
+  return response.json();
+};
+
+export const getTrendingTvShows = async () => {
+  const response = await fetch(
+    `${BASE_URL}/trending/tv/day?api_key=${API_KEY}`
+  );
+  if (!response.ok) throw new Error("failed to fetch Trending movies");
+  return response.json();
+};
+
+export const getTrendingThisWeek = async () => {
+  const response = await fetch(
+    `${BASE_URL}/trending/all/week?api_key=${API_KEY}`
+  );
+  if (!response.ok) throw new Error("failed to fetch Trending this week");
+  return response.json();
+};
+
+export const getPopularTvShows = async () => {
+  const response = await fetch(`${BASE_URL}/tv/popular?api_key=${API_KEY}`);
+  if (!response.ok) throw new Error("failed to fetch Trending this week");
+  return response.json();
+};
+
+export const getUpcomingMovies = async () => {
+  const response = await fetch(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}`);
+  if (!response.ok) throw new Error("failed to fetch Trending this week");
   return response.json();
 };

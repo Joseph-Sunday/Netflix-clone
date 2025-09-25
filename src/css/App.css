@@ -30,6 +30,10 @@ body {
   font-size: 13px;
 }
 
+.fs-lg-movie-card {
+  font-size: 13px;
+}
+
 .ff-text {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -68,13 +72,16 @@ body {
   z-index: 1000;
 }
 
-.navbar-custom.scrolled {
+nav.scrolled {
   background-color: #000;
 }
 
 /* Scroll-bar */
 .scroll-container {
+  display: flex;
   overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -95,3 +102,19 @@ body {
   color: #a1a1a1d8;
   transition: color .2s ease;
 }
+
+/* Media Queries */
+@media(min-width: 768px) {
+  .recommended-head {
+    font-size: 20px;
+  }
+ }
+
+ @media(min-width: 1024px) {
+  .fs-lg-movie-card {
+    font-size: 15px;
+  }
+  .recommended-head {
+    font-size: 25px;
+  }
+ }

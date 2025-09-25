@@ -8,7 +8,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -27,12 +27,12 @@ const NavBar = () => {
       <nav
         className={` navbar navbar-custom ${
           scrolled ? "scrolled" : ""
-        } navbar-expand-md bg-black navbar-dark fixed-top px-4`}
+        } navbar-expand-md navbar-dark bg-black fixed-top px-lg-4 py-1`}
       >
         <div className="container-fluid">
           <Link
             to="/"
-            className="navbar-brand my-netflix-red fw-800 navbar-brand-arc fs-3"
+            className="navbar-brand my-netflix-red fw-800 navbar-brand-arc fs-5"
           >
             NETFLIX
           </Link>

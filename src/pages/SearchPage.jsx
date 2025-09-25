@@ -2,11 +2,13 @@ import Search from "../components/Search";
 import { useState, useEffect } from "react";
 import { getPopularMovies } from "../services/api";
 import RecommendedMovies from "../components/RecommendedMovies";
+import "../css/Search.css";
 
 const SearchPage = () => {
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [recommendedMoviesError, setRecommendedMoviesError] = useState(null);
-  const [recommendedMoviesLoading, setRecommendedMoviesLoading] = useState(true);
+  const [recommendedMoviesLoading, setRecommendedMoviesLoading] =
+    useState(true);
 
   useEffect(() => {
     const fetchRecommendedMovies = async () => {
@@ -32,7 +34,10 @@ const SearchPage = () => {
       ) : recommendedMoviesError ? (
         <p>{recommendedMoviesError}</p>
       ) : (
-        <div className="container-fluid recommended-movies-container">
+        <div className="container-fluid recommended-movies-container mt-lg-5">
+          <h3 className="text-light ff-head my-3 text-center fs-sml recommended-head">
+            Recommended series and films
+          </h3>
           {recommendedMovies.map((movie) => (
             <RecommendedMovies movie={movie} />
           ))}

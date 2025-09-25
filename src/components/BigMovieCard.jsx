@@ -3,11 +3,11 @@ import "../css/App.css";
 
 const BigMovieCard = ({ movie }) => {
   return (
-    <div className="big-movie-card-container card bg-dark text-white">
+    <div className="big-movie-card-container card bg-dark text-white rounded-0">
       <div className="">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          className="big-movie-card-img card-img"
+          className="big-movie-card-img card-img rounded-0"
           alt={movie.title}
         />
       </div>

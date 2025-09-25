@@ -54,7 +54,7 @@ const Search = () => {
 
       {error && <p className="text-danger text-center mt-2">{error}</p>}
 
-      <div className="container-fluid my-3 d-flex justify-content-evenly align-items-center gap-2 overflow-auto scroll-container">
+      <div className="container-fluid my-3 d-flex justify-content-evenly align-items-center gap-2 overflow-auto scroll-container search-results-container">
         {results.length > 0
           ? results.map((movie) => <MovieCard key={movie.id} movie={movie} />)
           : hasSearched &&
@@ -66,9 +66,6 @@ const Search = () => {
       </div>
 
       <div>
-        <h3 className="text-light ff-head my-3 text-center">
-          Recommended series and films
-        </h3>
       </div>
     </>
   );

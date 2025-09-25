@@ -17,8 +17,6 @@ const TopTenMovieCard = ({ movie, rank }) => {
             className=" top-ten-movie-card-poster"
           />
         </div>
-
-        <div className="top-ten-movie-card-overlay"></div>
       </div>
     </>
   );

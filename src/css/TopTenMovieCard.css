@@ -1,6 +1,10 @@
 
 .top-ten-movie-card {
-    min-width: 55%;
+    min-width: 200px;
+}
+
+.top-ten-movie-card-content {
+    max-height: 200px;
 }
 
 .top-ten-movie-card-rank {
@@ -12,5 +16,6 @@
 
 .top-ten-movie-card-poster {
     width: 80%;
+    min-height: max-content;
     z-index: 1;
 }

@@ -1,7 +1,7 @@
 import "../css/App.css";
 import "../css/MovieCard.css";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, showBanner }) => {
   return (
     <div className="card movie-card bg-dark">
       <img
@@ -14,13 +14,10 @@ const MovieCard = ({ movie }) => {
           <img src="/" className="movie-card-brand-img1" alt="" />
           <img src="/" className="movie-card-brand-img2" alt="" />
         </div>
-        <div className="">
-          <h6 className="movie-card-title card-title text-light d-none d-md-block">
-            {movie.title}
-          </h6>
-        </div>
       </div>
-      <span className="movie-card-banner-btm fs-sml">Recently Added</span>
+      {showBanner && (
+        <span className="movie-card-banner-btm fs-sml">Recently Added</span>
+      )}
     </div>
   );
 };

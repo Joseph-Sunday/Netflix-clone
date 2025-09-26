@@ -14,10 +14,10 @@ const BigMovieCard = ({ movie }) => {
       <div className="big-movie-card-overlay card-img-overlay">
         <div>
           <img src="/" alt="" className="big-movie-card-overlay-img" />
-          <h2 className="card-title fw-bold">{movie.title}</h2>
+          <h2 className="big-movie-card-overlay-title card-title fw-bold">{movie.title}</h2>
         </div>
 
-        <p className="text-light fs-sml card-text small ff-text">
+        <p className="text-light fs-sml card-text small ff-text big-movie-card-overlay-text">
           {movie.overview.length > 250
             ? movie.overview.slice(0, 250) + "..."
             : movie.overview}

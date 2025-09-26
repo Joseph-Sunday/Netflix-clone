@@ -17,6 +17,10 @@ body {
   background-color: #000;
 }
 
+.bg-net-black { 
+  background-color: #141414;
+}
+
 .bg-light-b {
   color: #0000004d;
 }
@@ -112,7 +116,7 @@ nav.scrolled {
 
  @media(min-width: 1024px) {
   .fs-lg-movie-card {
-    font-size: 15px;
+    font-size: 20px;
   }
   .recommended-head {
     font-size: 25px;

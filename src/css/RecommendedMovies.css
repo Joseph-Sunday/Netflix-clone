@@ -1,4 +1,4 @@
-img {
+.recommended-movies-poster {
   min-width: 120px;
   height: 60px;
   object-fit: cover;
@@ -12,7 +12,7 @@ img {
 
 /* Media Queries */
 @media (min-width: 768px) {
-  img {
+  .recommended-movies-poster {
     min-width: 150px;
     height: 70px;
   }
@@ -23,7 +23,7 @@ img {
 }
 
 @media (min-width: 1024px) {
-  img {
+  .recommended-movies-poster {
     min-width: 200px;
     height: 100px;
   }

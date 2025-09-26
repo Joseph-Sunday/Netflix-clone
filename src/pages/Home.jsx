@@ -427,8 +427,8 @@ const Home = () => {
         ) : popularMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{popularMoviesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
               We think you'll love this
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -453,8 +453,8 @@ const Home = () => {
         ) : animeShowsError ? (
           <p className="text-danger mt-lg fs-sml">{animeShowsError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Anime Shows
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -479,8 +479,8 @@ const Home = () => {
         ) : horrorMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{horrorMoviesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Because you watched Conjuring
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -505,8 +505,8 @@ const Home = () => {
         ) : animeMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{animeMoviesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Anime movies
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -531,8 +531,8 @@ const Home = () => {
         ) : trendingMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{trendingMoviesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Trending in Nigeria
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -557,8 +557,8 @@ const Home = () => {
         ) : romanceMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{romanceMoviesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Can be very captivating
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -583,8 +583,8 @@ const Home = () => {
         ) : netflixMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{netflixMoviesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Only on Netflix
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -609,8 +609,8 @@ const Home = () => {
         ) : scifiMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{scifiMoviesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Sci-fi Drama
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -635,8 +635,8 @@ const Home = () => {
         ) : dramaSeriesError ? (
           <p className="text-danger mt-lg fs-sml">{dramaSeriesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Drama series
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -661,8 +661,8 @@ const Home = () => {
         ) : trendingShowsError ? (
           <p className="text-danger mt-lg fs-sml">{trendingShowsError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Trending Shows
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -687,8 +687,8 @@ const Home = () => {
         ) : awardWinnersError ? (
           <p className="text-danger mt-lg fs-sml">{awardWinnersError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Award Winners
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -713,8 +713,8 @@ const Home = () => {
         ) : hollywoodMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{hollywoodMoviesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Holloywood Blockbusters
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -739,8 +739,8 @@ const Home = () => {
         ) : adultAnimationsError ? (
           <p className="text-danger mt-lg fs-sml">{adultAnimationsError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Adult Animations
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -765,8 +765,8 @@ const Home = () => {
         ) : popularShowsError ? (
           <p className="text-danger mt-lg fs-sml">{popularShowsError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Popular Tv Shows
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
@@ -791,8 +791,8 @@ const Home = () => {
         ) : trendingThisWeekError ? (
           <p className="text-danger mt-lg fs-sml">{trendingThisWeekError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Trending This Week
             </h6>
             <div className="container-fluid my-2 d-flex gap-2 scroll-container">
@@ -817,8 +817,8 @@ const Home = () => {
         ) : upcomingMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{upcomingMoviesError}</p>
         ) : (
-          <div className="px-lg-2">
-            <h6 className="card-title text-light ff-text mx-3 mt-2 fs-sml fs-lg-movie-card">
+          <div className="px-lg-5">
+            <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
               Upcoming
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">

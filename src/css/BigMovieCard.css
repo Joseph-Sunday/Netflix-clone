@@ -3,9 +3,9 @@
 }
 
 .big-movie-card-img {
-  min-height: 500px;
+  height: 500px;
   object-fit: cover;
-  object-position: 50% 10%;
+  object-position: 50% 20%;
 }
 
 .big-movie-card-overlay {
@@ -47,8 +47,30 @@
 
 @media(min-width: 768px) {
   .big-movie-card-img {
-    min-height: 350px;
+    height: 600px;
     object-fit: cover;
-    object-position: 50% 10%;
+    object-position: 50% 30%;
+  }
+}
+
+@media(min-width: 1024px) {
+  .big-movie-card-img {
+    height: 650px;
+    object-fit: cover;
+    object-position: 50% 45%;
+  }
+
+  .big-movie-card-overlay {
+    padding-left: 4em;
+  }
+
+  .big-movie-card-overlay-text {
+    width: 50%;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .big-movie-card-overlay-title {
+    font-size: 3em;
   }
 }

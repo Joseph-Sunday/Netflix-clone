@@ -4,7 +4,7 @@ import "../css/TopTenMovieCard.css";
 const TopTenMovieCard = ({ movie, rank }) => {
   return (
     <>
-      <div className="card bg-dark relative top-ten-movie-card rounded-0">
+      <div className="card bg-net-black relative top-ten-movie-card rounded-0 border-0">
         <div className="container top-ten-movie-card-content d-flex align-items-center justify-content-end w-50">
           {rank && (
             <h1 className="top-ten-movie-card-rank text-secondary">

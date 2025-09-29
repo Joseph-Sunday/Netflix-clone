@@ -1,11 +1,11 @@
 import "../css/App.css";
 import "../css/MovieCard.css";
 
-const MovieCard = ({ movie, showBanner }) => {
+const MovieCard = ({ movie, showBanner, onClick }) => {
   const movieTitle = movie.title ? movie.title : movie.name;
 
   return (
-    <div className="card movie-card bg-dark">
+    <div className="card movie-card bg-dark" onClick={() => onClick(movie)}>
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         className="movie-card-poster-img"
@@ -53,7 +53,11 @@ const MovieCard = ({ movie, showBanner }) => {
           </div>
         </div>
         <div className=" container-fluid movie-card-details-overview">
-          <p className="text-light fs-tiny text-start">{movie.overview.length > 100 ? movie.overview.slice(0, 100) + "...": movie.overview}</p>
+          <p className="text-light fs-tiny text-start">
+            {movie.overview.length > 100
+              ? movie.overview.slice(0, 100) + "..."
+              : movie.overview}
+          </p>
           <div className="no-seasons"></div>
         </div>
         <div className="movie-card-details-title">

@@ -22,6 +22,8 @@ import {
 } from "../services/api";
 import { useEffect, useState } from "react";
 import TopTenMovieCard from "../components/TopTenMovieCard";
+import { Modal } from "react-bootstrap";
+import "../css/MovieCardModal.css";
 
 // Shuffle Array (of Movies)
 function shuffleArray(array) {
@@ -403,6 +405,9 @@ const Home = () => {
     fetchUpcomingMovies();
   }, []);
 
+  // Selected movie onClick
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
   return (
     <>
       {/* Random Movie */}
@@ -437,12 +442,61 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
           </div>
         )}
       </div>
+
+      {/* Movie Modal */}
+      {selectedMovie && (
+        <Modal
+          show={true}
+          onHide={() => setSelectedMovie(null)}
+          centered
+          size="lg"
+          animation={true}
+        >
+          <Modal.Header>
+            <Modal.Title closeButton>
+              <div className="modal-head-poster">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+                  alt={selectedMovie.title}
+                />
+              </div>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body dialogClassName="modal-body">
+            <div className="modal-head-container mt-4">
+              <div className="modal-head-title text-light ff-head fs-1 wrap">{selectedMovie.title ? selectedMovie.title : selectedMovie.name}</div>
+
+              <div className="modal-btn-overlay container-fluid d-flex align-items-center gap-2 mt-1">
+                <button
+                  type="button"
+                  className="btn d-flex justify-content-center align-items-center"
+                >
+                  <i className="bi bi-play-fill fs-2"></i> Next Episode
+                </button>
+                <button
+                  type="button"
+                  className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
+                >
+                  <i className="bi bi-plus-lg fs-6 text-light"></i>
+                </button>
+                <button
+                  type="button"
+                  className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
+                >
+                  <i className="bi bi-hand-thumbs-up fs-6 text-light"></i>
+                </button>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
+      )}
 
       {/* Anime Shows */}
       <div>
@@ -463,6 +517,7 @@ const Home = () => {
                   movie={show}
                   key={show.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -489,6 +544,7 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -515,6 +571,7 @@ const Home = () => {
                   movie={anime}
                   key={anime.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -541,6 +598,7 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   rank={index + 1}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -567,6 +625,7 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -593,6 +652,7 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -619,6 +679,7 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -645,6 +706,7 @@ const Home = () => {
                   movie={series}
                   key={series.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -671,6 +733,7 @@ const Home = () => {
                   movie={shows}
                   key={shows.id}
                   rank={index + 1}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -697,6 +760,7 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -723,6 +787,7 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -749,6 +814,7 @@ const Home = () => {
                   movie={animation}
                   key={animation.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -775,6 +841,7 @@ const Home = () => {
                   movie={shows}
                   key={shows.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -801,6 +868,7 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   rank={index + 1}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>
@@ -827,6 +895,7 @@ const Home = () => {
                   movie={movie}
                   key={movie.id}
                   showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
                 />
               ))}
             </div>

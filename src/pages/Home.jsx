@@ -450,7 +450,7 @@ const Home = () => {
         )}
       </div>
 
-      {/* Movie Modal */}
+      {/* Movie Details Modal */}
       {selectedMovie && (
         <Modal
           show={true}
@@ -459,8 +459,8 @@ const Home = () => {
           size="lg"
           animation={true}
         >
-          <Modal.Header>
-            <Modal.Title closeButton>
+          <Modal.Header closeButton>
+            <Modal.Title>
               <div className="modal-head-poster">
                 <img
                   src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
@@ -470,15 +470,18 @@ const Home = () => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body dialogClassName="modal-body">
-            <div className="modal-head-container mt-4">
-              <div className="modal-head-title text-light ff-head fs-1 wrap">{selectedMovie.title ? selectedMovie.title : selectedMovie.name}</div>
+            <div className="modal-head-container mt-lg">
+              <div className="modal-head-title text-light ff-head fs-2 wrap">
+                {selectedMovie.title ? selectedMovie.title : selectedMovie.name}
+              </div>
 
-              <div className="modal-btn-overlay container-fluid d-flex align-items-center gap-2 mt-1">
+              <div className="modal-btn-overlay container-fluid d-flex align-items-center gap-2 mt-2">
                 <button
                   type="button"
-                  className="btn d-flex justify-content-center align-items-center"
+                  className="btn d-flex justify-content-center align-items-center "
                 >
-                  <i className="bi bi-play-fill fs-2"></i> Next Episode
+                  <i className="bi bi-play-fill fs-5"></i>
+                  {selectedMovie.name ? "Next Episode" : "Play"}
                 </button>
                 <button
                   type="button"
@@ -494,6 +497,114 @@ const Home = () => {
                 </button>
               </div>
             </div>
+
+            <section className="modal-body-container container-fluid d-md-flex justify-content-between align-items-center gap-5">
+              <div className="">
+                <div className="d-flex justify-content-start align-items-center gap-4">
+                  <p className="text-light fs-sml">
+                    <strong>
+                      {selectedMovie.release_date
+                        ? selectedMovie.release_date.slice(0, 4)
+                        : selectedMovie.first_air_date.slice(0, 4)}
+                    </strong>
+                  </p>
+                  {selectedMovie.name ? (
+                    <p className="text-light fs-sml">{selectedMovie.adult}</p>
+                  ) : (
+                    ""
+                  )}
+                </div>
+
+                <div className="modal-head-title text-light ff-head fs-sml wrap px-0">
+                  <i className="bi bi-dot"></i>
+                  {selectedMovie.title
+                    ? selectedMovie.title
+                    : selectedMovie.name}
+                  <i className="bi bi-dot"></i>
+                </div>
+
+                <div className="d-md-flex justify-content-between align-items-center">
+                  <p className="text-light fs-sml">{selectedMovie.rating}</p>
+                  <p className="text-light fs-sml">{selectedMovie.genres}</p>
+                </div>
+
+                <div className="modal-body-overview">
+                  <div className="modal-body-overview-most-liked d-flex align-items-baseline gap-2">
+                    <button className="btn btn-danger rounded-2 btn-sml py-0 px-2">
+                      <i className="bi bi-hand-thumbs-up-fill fs-sml"></i>
+                    </button>
+                    <h6 className="text-light ff-text">Most liked</h6>
+                  </div>
+                  <p className="fs-sml ff-text mt-2 my-1">
+                    {selectedMovie.overview.length > 200
+                      ? selectedMovie.overview.slice(0, 200) + "..."
+                      : selectedMovie.overview}
+                  </p>
+                  {selectedMovie.overview.length > 200 ? (
+                    <div className="d-flex justify-content-end align-items-center container-fluid">
+                      <button className="btn btn-danger btn-sml ff-text py-1 px-2 fs-sml border-0 modal-body-readmore-btn">
+                        Read More
+                      </button>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+              <div className="container-fluid">
+                <div className="modal-body-cast fs-sml ff-text text-secondary">
+                  Cast: {"{...}"}
+                </div>
+                <div className="modal-body-genres my-2 ff-text text-secondary fs-sml">
+                  Genres: {"{...}"}
+                </div>
+                <div className="modal-body-description ff-text text-secondary fs-sml ">
+                  This series is: {"{...}"}
+                </div>
+              </div>
+
+              <div className="modal-body-container-2">
+                <div className="d-flex justify-content-between align-items-center mt-4">
+                  {selectedMovie.name ? (
+                    <h3 className="ff-head fs-3 my-1">Episodes</h3>
+                  ) : (
+                    <h3 className="ff-head fs-4 my-1">Watch</h3>
+                  )}
+
+                  {selectedMovie.name ? (
+                    <button className="btn btm-sml btn-outline-secondary py-0 px-3 my-1 fs-sml text-light">
+                      S1E01 <i className="bi bi-caret-down-fill fs-sml"></i>
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div className="modal-body-container-episodes container-fluid bg-dark">
+                  <div className="py-3 mt-2 text-light ff-text modal-body-overview-episodes-card">
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`}
+                      alt={
+                        selectedMovie.title
+                          ? selectedMovie.title
+                          : selectedMovie.name
+                      }
+                      className="modal-body-overview-episodes-poster"
+                    />
+                    <p className="ff-text fs-sml mt-1">
+                      {selectedMovie.overview.length > 200
+                        ? selectedMovie.overview.slice(0, 200) + "..."
+                        : selectedMovie.overview}
+                    </p>
+                    <button
+                      className="btn btm-sml rounded-circle d-flex justify-content-center align-items-center modal-body-overview-episodes-btn"
+                      type="button"
+                    >
+                      <i className="bi bi-play-fill text-light fs-1"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
           </Modal.Body>
         </Modal>
       )}

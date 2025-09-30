@@ -7,7 +7,29 @@
     margin: 0;
 }
 
+.bg-transparent {
+    background-color: #ffffff0e;
+}
+
 /* General styles */
+.modal-content {
+    background-color: #141414;
+    color: #fff;
+}
+
+.modal-header .btn-close {
+    z-index: 1000;
+    filter: invert(1.2);
+    color: #000;
+    background-color: #fff;
+    padding: .5em;
+}
+
+.modal-header .btn-close:hover{
+    filter: invert(0.6);
+    transition: filter .3s ease-out;
+}
+
 .modal-body {
     position: relative;
     padding: 0;
@@ -16,7 +38,7 @@
 .modal-head-container {
     position: absolute;
     width: 100%;
-    top: 110px;
+    top: 80px;
 }
 
 .modal-head-poster img {
@@ -24,20 +46,21 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 300px;
+    height: 350px;
     object-fit: cover;
     object-position: 50% 20%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
 .modal-head-title {
     padding-left: .5em;
     font-weight: 600;
     text-shadow: 5px 4px 5px #000000de;
-    background-color: #ffffff25;
 }
 
 .modal-btn-overlay button:first-child {
-    width: 50%;
+    width: 45%;
     background-color: #fff;
     color: #000;
     border-radius: 5px;
@@ -62,4 +85,50 @@
 .modal-btn-overlay button:hover{
     outline: 1px solid #fff;
     transition: outline .3s ease-in-out;
+}
+
+/* Modal Body Styles */
+.modal-body-container {
+    margin-top: 20em;
+}
+
+.modal-body-readmore-btn:hover {
+    transition: background-color .3s ease;
+}
+
+.modal-body-overview-episodes-card {
+    position: relative;
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-body-overview-episodes-poster {
+    width: 250px;
+    border-radius: 5px;
+}
+
+.modal-body-overview-episodes-btn {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    width: 50px;
+    height: 50px;
+    background-color: none;
+    outline: 1px solid #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s ease;
+}
+
+.modal-body-overview-episodes-btn:hover {
+    background-color: none;
+    outline: 1px solid #fff;
+}
+
+.modal-body-overview-episodes-card:hover .modal-body-overview-episodes-btn{
+    opacity: 1;
+    pointer-events: auto;
 }

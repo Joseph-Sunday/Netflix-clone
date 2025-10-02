@@ -566,7 +566,7 @@ const Home = () => {
                   )}
                 </div>
               </div>
-              <div className="container-fluid mt-1">
+              <div className="mt-1">
                 <div className="modal-body-cast fs-sml ff-text text-secondary">
                   <i>Cast: {"{...}"}</i>
                 </div>

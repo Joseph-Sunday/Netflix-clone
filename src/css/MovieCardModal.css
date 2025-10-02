@@ -1,134 +1,198 @@
 /* Utility Styles */
 .p-null {
-    padding: 0;
+  padding: 0;
 }
 
 .m-null {
-    margin: 0;
+  margin: 0;
 }
 
 .bg-transparent {
-    background-color: #ffffff0e;
+  background-color: #ffffff0e;
 }
 
 /* General styles */
 .modal-content {
-    background-color: #141414;
-    color: #fff;
+  background-color: #141414;
+  color: #fff;
 }
 
 .modal-header .btn-close {
-    z-index: 1000;
-    filter: invert(1.2);
-    color: #000;
-    background-color: #fff;
-    padding: .5em;
+  z-index: 1000;
+  filter: invert(1.2);
+  color: #000;
+  background-color: #fff;
+  padding: 0.5em;
 }
 
-.modal-header .btn-close:hover{
-    filter: invert(0.6);
-    transition: filter .3s ease-out;
+.modal-header .btn-close:hover {
+  filter: invert(0.6);
+  transition: filter 0.3s ease-out;
 }
 
 .modal-body {
-    position: relative;
-    padding: 0;
+  position: relative;
+  padding: 0;
 }
 
 .modal-head-container {
-    position: absolute;
-    width: 100%;
-    top: 80px;
+  position: absolute;
+  width: 100%;
+  top: 80px;
 }
 
 .modal-head-poster img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    object-position: 50% 20%;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 .modal-head-title {
-    padding-left: .5em;
-    font-weight: 600;
-    text-shadow: 5px 4px 5px #000000de;
+  padding-left: 0.5em;
+  font-weight: 600;
+  text-shadow: 5px 4px 5px #000000de;
 }
 
 .modal-btn-overlay button:first-child {
-    width: 45%;
-    background-color: #fff;
-    color: #000;
-    border-radius: 5px;
-    padding: 0px 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    outline: none;
+  width: 45%;
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  padding: 0px 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  outline: none;
 }
 
 .modal-btn-overlay button:first-child:hover {
-    background-color: #ececec;
-    color: #000;
-    outline: none;
-    transition: background-color .4s ease-out;
+  background-color: #ececec;
+  color: #000;
+  outline: none;
+  transition: background-color 0.4s ease-out;
 }
 
 .modal-btn-overlay button {
-    width: 38px;
-    color: #fff;
-    outline: 1px solid #5b5b5b;
+  width: 38px;
+  color: #fff;
+  outline: 1px solid #5b5b5b;
 }
 
-.modal-btn-overlay button:hover{
-    outline: 1px solid #fff;
-    transition: outline .3s ease-in-out;
+.modal-btn-overlay button:hover {
+  outline: 1px solid #fff;
+  transition: outline 0.3s ease-in-out;
 }
 
 /* Modal Body Styles */
 .modal-body-container {
-    margin-top: 20em;
+  margin-top: 20em;
 }
 
 .modal-body-readmore-btn:hover {
-    transition: background-color .3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .modal-body-overview-episodes-card {
-    position: relative;
-    display: inline-block;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-body-overview-episodes-poster {
-    width: 250px;
-    border-radius: 5px;
+  width: 250px;
+  border-radius: 5px;
 }
 
 .modal-body-overview-episodes-btn {
-    position: absolute;
-    top: 25%;
-    left: 40%;
-    width: 50px;
-    height: 50px;
-    background-color: none;
-    outline: 1px solid #fff;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .4s ease;
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  width: 50px;
+  height: 50px;
+  background-color: none;
+  outline: 2px solid #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
 .modal-body-overview-episodes-btn:hover {
-    background-color: none;
-    outline: 1px solid #fff;
+  background-color: none;
+  outline: 1px solid #fff;
 }
 
-.modal-body-overview-episodes-card:hover .modal-body-overview-episodes-btn{
-    opacity: 1;
-    pointer-events: auto;
+.modal-body-overview-episodes-card:hover .modal-body-overview-episodes-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Media Styles */
+@media (min-width: 768px) {
+  .modal-body-overview-episodes-poster {
+    width: 200px;
+    border-radius: 5px;
+  }
+
+  .modal-body-overview-episodes-card {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .modal-body-overview-episodes-btn {
+    position: absolute;
+    top: 35%;
+    left: 16%;
+    width: 50px;
+    height: 50px;
+    background-color: none;
+    outline: 2px solid #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal-head-poster img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: 50% 20%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  .modal-body-container {
+    margin-top: 30em;
+  }
+  .modal-body-overview-episodes-btn {
+    position: absolute;
+    top: 35%;
+    left: 10%;
+    width: 50px;
+    height: 50px;
+    background-color: none;
+    outline: 2px solid #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .modal-head-container {
+    position: absolute;
+    width: 100%;
+    top: 180px;
+  }
 }

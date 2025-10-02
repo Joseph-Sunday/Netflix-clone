@@ -408,6 +408,9 @@ const Home = () => {
   // Selected movie onClick
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  // Show full text
+  const [showFull, setShowFull] = useState(false);
+
   return (
     <>
       {/* Random Movie */}
@@ -498,7 +501,7 @@ const Home = () => {
               </div>
             </div>
 
-            <section className="modal-body-container container-fluid d-md-flex justify-content-between align-items-center gap-5">
+            <section className="modal-body-container container-fluid d-md-flex justify-content-between align-items-start gap-5 px-lg-3">
               <div className="">
                 <div className="d-flex justify-content-start align-items-center gap-4">
                   <p className="text-light fs-sml">
@@ -523,9 +526,19 @@ const Home = () => {
                   <i className="bi bi-dot"></i>
                 </div>
 
-                <div className="d-md-flex justify-content-between align-items-center">
-                  <p className="text-light fs-sml">{selectedMovie.rating}</p>
-                  <p className="text-light fs-sml">{selectedMovie.genres}</p>
+                <div className="d-flex justify-content-start align-items-center gap-5 mt-2">
+                  <p className="text-secondary fs-sml ff-text d-flex justify-content-center align-items-baseline gap-2">
+                    <strong>
+                      <i className="text-secondary">Rating: </i>
+                      ⭐️{Math.floor(selectedMovie.vote_average)}
+                    </strong>
+                  </p>
+                  <p className="text-secondary fs-sml ff-text d-flex justify-content-center align-items-baseline gap-2">
+                    <strong>
+                      <i className="text-secondary">Genre: </i>
+                      "{selectedMovie.genre_ids.join("", "").slice(0, 3)}"
+                    </strong>
+                  </p>
                 </div>
 
                 <div className="modal-body-overview">
@@ -536,75 +549,77 @@ const Home = () => {
                     <h6 className="text-light ff-text">Most liked</h6>
                   </div>
                   <p className="fs-sml ff-text mt-2 my-1">
-                    {selectedMovie.overview.length > 200
-                      ? selectedMovie.overview.slice(0, 200) + "..."
-                      : selectedMovie.overview}
+                    {showFull
+                      ? selectedMovie.overview
+                      : selectedMovie.overview.slice(0, 150) + "..."}
                   </p>
-                  {selectedMovie.overview.length > 200 ? (
-                    <div className="d-flex justify-content-end align-items-center container-fluid">
-                      <button className="btn btn-danger btn-sml ff-text py-1 px-2 fs-sml border-0 modal-body-readmore-btn">
-                        Read More
+
+                  {selectedMovie.overview.length > 150 && (
+                    <div className="d-flex justify-content-start align-items-center my-3">
+                      <button
+                        className="btn btn-danger btn-sml ff-text py-1 px-2 fs-sml border-0 modal-body-readmore-btn"
+                        onClick={() => setShowFull(!showFull)}
+                      >
+                        {showFull ? "Read Less" : "Read More"}
                       </button>
                     </div>
-                  ) : (
-                    ""
                   )}
                 </div>
               </div>
-              <div className="container-fluid">
+              <div className="container-fluid mt-1">
                 <div className="modal-body-cast fs-sml ff-text text-secondary">
-                  Cast: {"{...}"}
+                  <i>Cast: {"{...}"}</i>
                 </div>
                 <div className="modal-body-genres my-2 ff-text text-secondary fs-sml">
-                  Genres: {"{...}"}
+                  <i>Genres: {"{...}"}</i>
                 </div>
                 <div className="modal-body-description ff-text text-secondary fs-sml ">
-                  This series is: {"{...}"}
-                </div>
-              </div>
-
-              <div className="modal-body-container-2">
-                <div className="d-flex justify-content-between align-items-center mt-4">
-                  {selectedMovie.name ? (
-                    <h3 className="ff-head fs-3 my-1">Episodes</h3>
-                  ) : (
-                    <h3 className="ff-head fs-4 my-1">Watch</h3>
-                  )}
-
-                  {selectedMovie.name ? (
-                    <button className="btn btm-sml btn-outline-secondary py-0 px-3 my-1 fs-sml text-light">
-                      S1E01 <i className="bi bi-caret-down-fill fs-sml"></i>
-                    </button>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div className="modal-body-container-episodes container-fluid bg-dark">
-                  <div className="py-3 mt-2 text-light ff-text modal-body-overview-episodes-card">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`}
-                      alt={
-                        selectedMovie.title
-                          ? selectedMovie.title
-                          : selectedMovie.name
-                      }
-                      className="modal-body-overview-episodes-poster"
-                    />
-                    <p className="ff-text fs-sml mt-1">
-                      {selectedMovie.overview.length > 200
-                        ? selectedMovie.overview.slice(0, 200) + "..."
-                        : selectedMovie.overview}
-                    </p>
-                    <button
-                      className="btn btm-sml rounded-circle d-flex justify-content-center align-items-center modal-body-overview-episodes-btn"
-                      type="button"
-                    >
-                      <i className="bi bi-play-fill text-light fs-1"></i>
-                    </button>
-                  </div>
+                  <i>This series is: {"{...}"}</i>
                 </div>
               </div>
             </section>
+
+            <div className="modal-body-container-2 container-fluid px-lg-3">
+              <div className="d-flex justify-content-between align-items-center mt-4">
+                {selectedMovie.name ? (
+                  <h3 className="ff-head fs-3 my-1 px-1">Episodes</h3>
+                ) : (
+                  <h3 className="ff-head fs-4 my-1 px-1">Watch</h3>
+                )}
+
+                {selectedMovie.name ? (
+                  <button className="btn btm-sml btn-outline-secondary py-0 px-3 my-1 fs-sml text-light">
+                    S1E01 <i className="bi bi-caret-down-fill fs-sml"></i>
+                  </button>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="modal-body-container-episodes container-fluid bg-dark">
+                <div className="py-3 mt-2 text-light ff-text modal-body-overview-episodes-card">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`}
+                    alt={
+                      selectedMovie.title
+                        ? selectedMovie.title
+                        : selectedMovie.name
+                    }
+                    className="modal-body-overview-episodes-poster"
+                  />
+                  <p className="ff-text fs-sml mt-1">
+                    {selectedMovie.overview.length > 150
+                      ? selectedMovie.overview.slice(0, 150) + "..."
+                      : selectedMovie.overview}
+                  </p>
+                  <button
+                    className="btn btm-sml rounded-circle d-flex justify-content-center align-items-center modal-body-overview-episodes-btn"
+                    type="button"
+                  >
+                    <i className="bi bi-play-fill text-light fs-1"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
           </Modal.Body>
         </Modal>
       )}

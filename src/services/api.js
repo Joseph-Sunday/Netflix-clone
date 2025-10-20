@@ -145,3 +145,33 @@ export const getUpcomingMovies = async () => {
   if (!response.ok) throw new Error("failed to fetch Trending this week");
   return response.json();
 };
+
+// Series Page
+
+export const getRandomSeries = async () => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/trending/tv/week?api_key=${API_KEY}`
+    );
+    const data = await response.json();
+
+    if (data.results && data.results.length > 0) {
+      const randomIndex = Math.floor(Math.random() * data.results.length);
+      return data.results[randomIndex];
+    } else {
+      throw new Error("No Series Found");
+    }
+  } catch (err) {
+    console.err("error fetching random series:", err);
+  }
+};
+
+// Fetch Series
+export const fetchSeries = async (endpoint) => {
+  const separator = endpoint.includes("?") ? "&" : "?";
+  const response = await fetch(
+    `${BASE_URL}${endpoint}${separator}api_key=${API_KEY}&language=en-US`
+  );
+  if (!response.ok) throw new Error("Failed to fetch");
+  return response.json();
+};

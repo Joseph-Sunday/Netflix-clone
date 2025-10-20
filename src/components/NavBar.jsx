@@ -47,12 +47,22 @@ const NavBar = () => {
           <div className="d-none d-md-block me-auto mx-3" id="navmenu">
             <ul className="navbar-nav me-auto">
               <li className="nav-item fs-sml">
-                <Link to="/" className="nav-link active">
+                <Link
+                  to="/"
+                  className={`nav-link ${
+                    location.pathname === "/" ? "active" : "less-white"
+                  }`}
+                >
                   Home
                 </Link>
               </li>
               <li className="nav-item fs-sml">
-                <Link to="#" className="nav-link less-white">
+                <Link
+                  to="/series"
+                  className={`nav-link ${
+                    location.pathname === "/series" ? "active" : "less-white"
+                  }`}
+                >
                   Series
                 </Link>
               </li>
@@ -94,7 +104,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="link">
-                <Link to="" className="dropdown-item text-light fs-sml">
+                <Link to="/series" className="dropdown-item text-light fs-sml">
                   Series
                 </Link>
               </li>

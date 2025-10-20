@@ -2,19 +2,21 @@ import "../css/BigMovieCard.css";
 import "../css/App.css";
 
 const BigMovieCard = ({ movie }) => {
+  const movieTitle = movie.title ? movie.title : movie.name;
+
   return (
     <div className="big-movie-card-container card bg-dark text-white rounded-0">
       <div className="">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           className="big-movie-card-img card-img rounded-0"
-          alt={movie.title}
+          alt={movieTitle}
         />
       </div>
       <div className="big-movie-card-overlay card-img-overlay">
         <div>
           <img src="/" alt="" className="big-movie-card-overlay-img" />
-          <h2 className="big-movie-card-overlay-title card-title fw-bold">{movie.title}</h2>
+          <h2 className="big-movie-card-overlay-title card-title fw-bold">{movieTitle}</h2>
         </div>
 
         <p className="text-light fs-sml card-text small ff-text big-movie-card-overlay-text">

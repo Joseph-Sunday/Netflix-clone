@@ -67,7 +67,12 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item fs-sml">
-                <Link to="#" className="nav-link less-white">
+                <Link
+                  to="/films"
+                  className={`nav-link ${
+                    location.pathname === "/films" ? "active" : "less-white"
+                  }`}
+                >
                   Films
                 </Link>
               </li>
@@ -109,7 +114,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="link">
-                <Link to="" className="dropdown-item text-light fs-sml">
+                <Link to="/films" className="dropdown-item text-light fs-sml">
                   Films
                 </Link>
               </li>

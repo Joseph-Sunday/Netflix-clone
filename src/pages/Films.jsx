@@ -1,67 +1,83 @@
-import { useEffect, useState } from "react";
-import { getRandomSeries } from "../services/api";
+import "../css/App.css";
+import { getRandomMovie } from "../services/api";
+import { useState, useEffect } from "react";
 import BigMovieCard from "../components/BigMovieCard";
 import MovieCard from "../components/MovieCard";
 import TopTenMovieCard from "../components/TopTenMovieCard";
-import { useSeries } from "../hooks/useSeries";
+import { useFilms } from "../hooks/useFilms";
 import { Modal } from "react-bootstrap";
-import "../css/App.css";
-import "../css/MovieCardModal.css";
 
-const Series = () => {
-  // Fetch Random Series
-  const [randomSeries, setRandomSeries] = useState(null);
-  const [randomSeriesError, setRandomSeriesError] = useState(null);
-  const [randomSeriesLoading, setRandomSeriesLoading] = useState(true);
+const Films = () => {
+  // Fetch Random Movie
+  const [randomMovie, setRandomMovie] = useState(null);
+  const [randomMovieError, setRandomMovieError] = useState(null);
+  const [randomMovieLoading, setRandomMovieLoading] = useState(true);
 
   useEffect(() => {
-    const fetchRandomSeries = async () => {
+    const fetchRandomMovie = async () => {
       try {
-        const randomSeries = await getRandomSeries();
-        console.log("fetched random series:", randomSeries);
-        setRandomSeries(randomSeries);
+        const randomMovie = await getRandomMovie();
+        console.log("fetched Random Movie:", randomMovie);
+        setRandomMovie(randomMovie);
       } catch (err) {
-        console.log(randomSeriesError);
-        setRandomSeriesError("failed to fetch random series");
+        console.log(randomMovieError);
+        setRandomMovieError("failed to fetch random movie");
       } finally {
-        setRandomSeriesLoading(false);
+        setRandomMovieLoading(false);
       }
     };
 
-    fetchRandomSeries();
+    fetchRandomMovie();
   }, []);
 
-  // Fetched Series from useSeries hook
+  // Fetched Films from useFilms Hook
   const {
     popular,
-    trending,
     topRated,
-    airingToday,
-    discover,
-    airing,
-    anime,
-    netflixAnime,
+    trending,
+    upcoming,
+    nowPlaying,
+    trendingThisWeek,
+    action,
+    romance,
+    horror,
     netflix,
-    netflixTrending,
-  } = useSeries();
+  } = useFilms();
 
   // Selected Movie (Modal)
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  // Show full text
+  // Show Full Text
   const [showFull, setShowFull] = useState(false);
 
   return (
     <>
-      {/* Random Series */}
+      {/* Random Movie */}
       <div>
-        {randomSeriesLoading ? (
+        {randomMovieLoading ? (
           <p className="fs-sml text-center text-light">Loading..</p>
-        ) : randomSeriesError ? (
-          <p>{randomSeriesError}</p>
+        ) : randomMovieError ? (
+          <p>{randomMovieError}</p>
         ) : (
-          <BigMovieCard movie={randomSeries} />
+          <BigMovieCard movie={randomMovie} />
         )}
+      </div>
+
+      {/* Popular Films */}
+      <div className="px-lg-5">
+        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+          Popular Films
+        </h6>
+        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+          {popular.map((film) => (
+            <MovieCard
+              movie={film}
+              key={film.id}
+              showBanner={Math.random() < 0.4}
+              onClick={setSelectedMovie}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Movie Details Modal */}
@@ -235,62 +251,28 @@ const Series = () => {
         </Modal>
       )}
 
-      {/* Popular Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Popular Tv Series
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {popular.map((series) => (
-            <MovieCard
-              movie={series}
-              key={series.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Top Rated Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Top-Rated Series
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {topRated.map((series) => (
-            <MovieCard
-              movie={series}
-              key={series.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Trending Series */}
+      {/* Trending Films */}
       <div className="px-lg-5">
         <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
-          Trending in Nigeria
+          Trending Today
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {trending.slice(0, 10).map((series, index) => (
-            <TopTenMovieCard movie={series} key={series.id} rank={index + 1} />
+          {trending.slice(0, 10).map((film, index) => (
+            <TopTenMovieCard movie={film} key={film.id} rank={index + 1} />
           ))}
         </div>
       </div>
 
-      {/* Airing Today Series */}
+      {/* Top Rated Films */}
       <div className="px-lg-5">
         <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Airing Shows
+          Top Rated
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {airingToday.map((series) => (
+          {topRated.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -298,16 +280,16 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Recommended Series */}
+      {/* Now Playing Films */}
       <div className="px-lg-5">
         <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Recommended Series
+          Now In Theaters
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {discover.map((series) => (
+          {nowPlaying.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -315,16 +297,16 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Airing Now Series */}
+      {/* Upcoming Films */}
       <div className="px-lg-5">
         <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Follow Up
+          Coming to Theaters
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {airing.map((series) => (
+          {upcoming.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -332,16 +314,16 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Anime Series */}
+      {/* Action Films */}
       <div className="px-lg-5">
         <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Anime Series
+          Action Packed
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {anime.map((series) => (
+          {action.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -349,45 +331,62 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Netflix Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Only On Netflix
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflix.map((series) => (
-            <MovieCard
-              movie={series}
-              key={series.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Netflix Trending Series */}
+      {/* Trending This Week */}
       <div className="px-lg-5">
         <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
-          Trending on Netflix
+          Trending This Week
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflixTrending.slice(0, 10).map((series, index) => (
-            <TopTenMovieCard movie={series} key={series.id} rank={index + 1} />
+          {trendingThisWeek.slice(0, 10).map((film, index) => (
+            <TopTenMovieCard movie={film} key={film.id} rank={index + 1} />
           ))}
         </div>
       </div>
 
-      {/* Netflix Anime */}
+      {/* Horror Films */}
       <div className="px-lg-5">
         <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Netflix Anime
+          Horror
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflixAnime.map((series) => (
+          {horror.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
+              showBanner={Math.random() < 0.4}
+              onClick={setSelectedMovie}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Romance Films */}
+      <div className="px-lg-5">
+        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+          Romance
+        </h6>
+        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+          {romance.map((film) => (
+            <MovieCard
+              movie={film}
+              key={film.id}
+              showBanner={Math.random() < 0.4}
+              onClick={setSelectedMovie}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Netflix Films */}
+      <div className="px-lg-5">
+        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+          Only on Netflix
+        </h6>
+        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+          {netflix.map((film) => (
+            <MovieCard
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -398,4 +397,4 @@ const Series = () => {
   );
 };
 
-export default Series;
+export default Films;

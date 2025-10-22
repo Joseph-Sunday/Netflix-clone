@@ -502,7 +502,7 @@ const Home = () => {
                 >
                   <i
                     className={`"bi ${
-                      isInList ? "bi-check-lg" : "bi-plus-lg"
+                      isInList ? "bi-check-lg text-danger" : "bi-plus-lg"
                     } fs-6 text-light"`}
                   ></i>
                 </button>

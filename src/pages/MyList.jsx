@@ -16,7 +16,7 @@ const MyList = () => {
 
   return (
     <>
-      <div className="container-fluid mt-lg p-4">
+      <div className="container-fluid mt-5 p-4">
         <h1 className="text-light ff-head mx-lg-4">My List</h1>
 
         {myList.length === 0 ? (

@@ -5,6 +5,7 @@ import BigMovieCard from "../components/BigMovieCard";
 import MovieCard from "../components/MovieCard";
 import TopTenMovieCard from "../components/TopTenMovieCard";
 import { useFilms } from "../hooks/useFilms";
+import { useList } from "../context/ListContext";
 import { Modal } from "react-bootstrap";
 
 const Films = () => {
@@ -49,6 +50,10 @@ const Films = () => {
 
   // Show Full Text
   const [showFull, setShowFull] = useState(false);
+
+  // My list
+  const { addToList, removeFromList, myList } = useList();
+  const isInList = myList.some((item) => item.id === selectedMovie?.id);
 
   return (
     <>
@@ -116,8 +121,17 @@ const Films = () => {
                 <button
                   type="button"
                   className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
+                  onClick={() =>
+                    isInList
+                      ? removeFromList(selectedMovie)
+                      : addToList(selectedMovie)
+                  }
                 >
-                  <i className="bi bi-plus-lg fs-6 text-light"></i>
+                  <i
+                    className={`"bi ${
+                      isInList ? "bi-check-lg text-danger" : "bi-plus-lg"
+                    }fs-6 text-light"`}
+                  ></i>
                 </button>
                 <button
                   type="button"

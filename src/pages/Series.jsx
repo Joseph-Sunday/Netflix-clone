@@ -4,6 +4,7 @@ import BigMovieCard from "../components/BigMovieCard";
 import MovieCard from "../components/MovieCard";
 import TopTenMovieCard from "../components/TopTenMovieCard";
 import { useSeries } from "../hooks/useSeries";
+import { useList } from "../context/ListContext";
 import { Modal } from "react-bootstrap";
 import "../css/App.css";
 import "../css/MovieCardModal.css";
@@ -50,6 +51,10 @@ const Series = () => {
 
   // Show full text
   const [showFull, setShowFull] = useState(false);
+
+  // My List
+  const { addToList, removeFromList, myList } = useList();
+  const isInList = myList.some((item) => item.id === selectedMovie?.id);
 
   return (
     <>
@@ -100,8 +105,17 @@ const Series = () => {
                 <button
                   type="button"
                   className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
+                  onClick={() =>
+                    isInList
+                      ? removeFromList(selectedMovie)
+                      : addToList(selectedMovie)
+                  }
                 >
-                  <i className="bi bi-plus-lg fs-6 text-light"></i>
+                  <i
+                    className={`"bi ${
+                      isInList ? "bi-check-lg text-danger" : "bi-plus-lg "
+                    } fs-6 text-light"`}
+                  ></i>
                 </button>
                 <button
                   type="button"

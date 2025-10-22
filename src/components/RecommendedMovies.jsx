@@ -1,12 +1,15 @@
 import "../css/App.css";
 import "../css/RecommendedMovies.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useList } from "../context/ListContext";
 
 const RecommendedMovies = ({ movie, onClick }) => {
   const location = useLocation();
 
+  const { removeFromList } = useList();
+
   return (
-    <div className="" onClick={() => onClick(movie)}>
+    <div className="">
       <div className="d-flex justify-content-between align-items-center py-1 gap-3">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -21,6 +24,22 @@ const RecommendedMovies = ({ movie, onClick }) => {
             <span className="bi bi-play-circle fs-3"></span>
           </button>
         )}
+      </div>
+
+      <div className="recommended-movies-btns">
+        {location.pathname === "/mylist" && (
+          <button className="btn btn-sml p-1 text-light recommended-movies-remove-btn fs-sml"
+          onClick={() => removeFromList(movie.id)}
+          >
+            Remove
+          </button>
+        )}
+        <button
+          className="btn btn-sml p-1 text-light"
+          onClick={() => onClick(movie)}
+        >
+          <i className="bi bi-info-circle"></i> More info
+        </button>
       </div>
     </div>
   );

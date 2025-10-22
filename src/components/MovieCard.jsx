@@ -11,11 +11,12 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
   const movieTitle = movie.title ? movie.title : movie.name;
 
   return (
-    <div className="card movie-card bg-dark" onClick={() => onClick(movie)}>
+    <div className="card movie-card bg-dark">
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         className="movie-card-poster-img"
         alt={movieTitle}
+        onClick={() => onClick(movie)}
       />
       <div className="movie-card-overlay">
         <div className="movie-card-brands">
@@ -43,7 +44,9 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
                 isInList ? removeFromList(movie.id) : addToList(movie)
               }
             >
-              <i className={`bi ${isInList ? "bi-check-lg" : "bi-plus-lg"}`}></i>
+              <i
+                className={`bi ${isInList ? "bi-check-lg text-danger " : "bi-plus-lg"}`}
+              ></i>
             </button>
             <button
               type="button"
@@ -56,6 +59,7 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
             <button
               type="button"
               className="btn btn-outline-secondary bg-dark rounded-circle d-flex justify-content-center align-items-center"
+              onClick={() => onClick(movie)}
             >
               <i className="bi bi-chevron-down fs-6"></i>
             </button>

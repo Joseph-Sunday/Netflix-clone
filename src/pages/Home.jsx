@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 import TopTenMovieCard from "../components/TopTenMovieCard";
 import { Modal } from "react-bootstrap";
 import "../css/MovieCardModal.css";
+import { useList } from "../context/ListContext";
 
 // Shuffle Array (of Movies)
 function shuffleArray(array) {
@@ -411,6 +412,10 @@ const Home = () => {
   // Show full text
   const [showFull, setShowFull] = useState(false);
 
+  // My List Logic
+  const { addToList, removeFromList, myList } = useList();
+  const isInList = myList.some((item) => item.id === selectedMovie?.id);
+
   return (
     <>
       {/* Random Movie */}
@@ -489,8 +494,17 @@ const Home = () => {
                 <button
                   type="button"
                   className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
+                  onClick={() =>
+                    isInList
+                      ? removeFromList(selectedMovie)
+                      : addToList(selectedMovie)
+                  }
                 >
-                  <i className="bi bi-plus-lg fs-6 text-light"></i>
+                  <i
+                    className={`"bi ${
+                      isInList ? "bi-check-lg" : "bi-plus-lg"
+                    } fs-6 text-light"`}
+                  ></i>
                 </button>
                 <button
                   type="button"
@@ -535,8 +549,8 @@ const Home = () => {
                   </p>
                   <p className="text-secondary fs-sml ff-text d-flex justify-content-center align-items-baseline gap-2">
                     <strong>
-                      <i className="text-secondary">Genre: </i>
-                      "{selectedMovie.genre_ids.join("", "").slice(0, 3)}"
+                      <i className="text-secondary">Genre: </i>"
+                      {selectedMovie.genre_ids.join("", "").slice(0, 3)}"
                     </strong>
                   </p>
                 </div>

@@ -1,7 +1,13 @@
 import "../css/App.css";
 import "../css/MovieCard.css";
+import { useList } from "../context/ListContext";
 
 const MovieCard = ({ movie, showBanner, onClick }) => {
+  // My List logic
+  const { addToList, removeFromList, myList } = useList();
+  const isInList = myList.some((item) => item.id === movie.id);
+
+  // Movie name/title logic
   const movieTitle = movie.title ? movie.title : movie.name;
 
   return (
@@ -33,8 +39,11 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
             <button
               type="button"
               className="btn btn-outline-secondary bg-dark rounded-circle d-flex justify-content-center align-items-center"
+              onClick={() =>
+                isInList ? removeFromList(movie.id) : addToList(movie)
+              }
             >
-              <i className="bi bi-plus-lg fs-6"></i>
+              <i className={`bi ${isInList ? "bi-check-lg" : "bi-plus-lg"}`}></i>
             </button>
             <button
               type="button"

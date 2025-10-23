@@ -1,73 +1,95 @@
-import { useEffect, useState } from "react";
-import { getRandomSeries } from "../services/api";
-import BigMovieCard from "../components/BigMovieCard";
-import MovieCard from "../components/MovieCard";
-import TopTenMovieCard from "../components/TopTenMovieCard";
+import "../css/BrowseByLanguage.css";
+import MovieCard from "./MovieCard";
 import { useSeries } from "../hooks/useSeries";
-import { useList } from "../context/ListContext";
+import { useFilms } from "../hooks/useFilms";
+import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
-import "../css/App.css";
-import "../css/MovieCardModal.css";
+import { useList } from "../context/ListContext";
+import { fetchSeries } from "../services/api";
 
-const Series = () => {
-  // Fetch Random Series
-  const [randomSeries, setRandomSeries] = useState(null);
-  const [randomSeriesError, setRandomSeriesError] = useState(null);
-  const [randomSeriesLoading, setRandomSeriesLoading] = useState(true);
+// Shuffle Array (of Movies)
+function shuffleArray(array) {
+  return [...array].sort(() => Math.random() - 0.5);
+}
+
+const BrowseByLanguage = () => {
+  // Langauge State
+  const [language, setLanguage] = useState("en");
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const fetchRandomSeries = async () => {
-      try {
-        const randomSeries = await getRandomSeries();
-        console.log("fetched random series:", randomSeries);
-        setRandomSeries(randomSeries);
-      } catch (err) {
-        console.log(randomSeriesError);
-        setRandomSeriesError("failed to fetch random series");
-      } finally {
-        setRandomSeriesLoading(false);
-      }
+    const getMovies = async () => {
+      const data = await fetchSeries(
+        `/discover/movie?with_original_language=${language}`
+      );
+      setResults(shuffleArray(data.results));
     };
 
-    fetchRandomSeries();
-  }, []);
+    getMovies();
+  }, [language]);
 
-  // Fetched Series from useSeries hook
-  const {
-    popular,
-    trending,
-    topRated,
-    airingToday,
-    discover,
-    airing,
-    anime,
-    netflixAnime,
-    netflix,
-    netflixTrending,
-  } = useSeries();
+  // Fetch movies
+  const { popular, trending, topRated, action, romance, netflix } = useFilms();
+  // Fetch series
+  const { netflixAnime, netflixTrending, anime } = useSeries();
 
-  // Selected Movie (Modal)
+  // Movie Modal state
   const [selectedMovie, setSelectedMovie] = useState(null);
-
-  // Show full text
+  // Show full text in modal
   const [showFull, setShowFull] = useState(false);
 
-  // My List
+  // My List State
   const { addToList, removeFromList, myList } = useList();
   const isInList = myList.some((item) => item.id === selectedMovie?.id);
 
   return (
     <>
-      {/* Random Series */}
-      <div>
-        {randomSeriesLoading ? (
-          <p className="fs-sml text-center text-light">Loading..</p>
-        ) : randomSeriesError ? (
-          <p>{randomSeriesError}</p>
-        ) : (
-          <BigMovieCard movie={randomSeries} />
-        )}
-      </div>
+      <section className="">
+        <div className="container-fluid mt-5 p-4 d-md-flex justify-content-between align-items-center flex-wrap">
+          <h1 className="text-light ff-head mx-lg-4">Browse by Langauge</h1>
+
+          <div className=" d-md-flex justify-content-center align-items-baseline gap-2 flex-wrap">
+            <div className="d-md-flex justify-content-center align-items-baseline gap-2">
+              <p className="text-light ff-text fs-sml m-0">
+                Select your preferences
+              </p>
+              <div class="btn-group mt-1">
+                <select
+                  className="btn btn-sm text-light border rounded-0 fs-sml"
+                  onChange={(e) => setLanguage(e.target.value)}
+                  value={language}
+                >
+                  <option value="en">English</option>
+                  <option value="ko">Korean</option>
+                  <option value="hi">Hindi</option>
+                  <option value="ja">Japanese</option>
+                  <option value="es">Spanish</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="btn-group mt-1 d-flex justify-items-center align-items-center">
+              <select className="btn btn-sm text-light border rounded-0 fs-sml">
+                <option value="en">English Au</option>
+                <option value="ko">Korean Au</option>
+                <option value="hi">Hindi Au</option>
+                <option value="ja">Japanese Au</option>
+                <option value="es">Spanish Au</option>
+              </select>
+            </div>
+
+            <div className="d-md-flex justify-content-center align-items-baseline gap-2">
+              <p className="text-light ff-text fs-sml m-0 mt-1">Sort by</p>
+              <div class="btn-group mt-1">
+                <select className="btn btn-sm text-light border rounded-0 fs-sml">
+                  <option value="en">Series</option>
+                  <option value="ko">Films</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Movie Details Modal */}
       {selectedMovie && (
@@ -105,15 +127,11 @@ const Series = () => {
                 <button
                   type="button"
                   className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
-                  onClick={() =>
-                    isInList
-                      ? ""
-                      : addToList(selectedMovie)
-                  }
+                  onClick={() => (isInList ? "" : addToList(selectedMovie))}
                 >
                   <i
                     className={`"bi ${
-                      isInList ? "bi-check-lg text-danger" : "bi-plus-lg "
+                      isInList ? "bi-check-lg text-danger" : "bi-plus-lg"
                     } fs-6 text-light"`}
                   ></i>
                 </button>
@@ -249,16 +267,13 @@ const Series = () => {
         </Modal>
       )}
 
-      {/* Popular Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Popular Tv Series
-        </h6>
+      {/* Filter results Films */}
+      <div className=" container-fluid">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {popular.map((series) => (
+          {results.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -266,16 +281,13 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Top Rated Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Top-Rated Series
-        </h6>
+      {/* Filter results Films */}
+      <div className=" container-fluid">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {topRated.map((series) => (
+          {results.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -283,28 +295,13 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Trending Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
-          Trending in Nigeria
-        </h6>
+      {/* Trending Films */}
+      <div className=" container-fluid mt-4">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {trending.slice(0, 10).map((series, index) => (
-            <TopTenMovieCard movie={series} key={series.id} rank={index + 1} />
-          ))}
-        </div>
-      </div>
-
-      {/* Airing Today Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Airing Shows
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {airingToday.map((series) => (
+          {trending.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -312,16 +309,13 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Recommended Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Recommended Series
-        </h6>
+      {/* Top Rated Films */}
+      <div className=" container-fluid mt-4">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {discover.map((series) => (
+          {topRated.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -329,16 +323,13 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Airing Now Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Follow Up
-        </h6>
+      {/* Netflix Films */}
+      <div className=" container-fluid mt-4">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {airing.map((series) => (
+          {netflix.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -346,16 +337,13 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Anime Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Anime Series
-        </h6>
+      {/* Netflix Trending series */}
+      <div className=" container-fluid mt-4">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {anime.map((series) => (
+          {netflixTrending.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -363,16 +351,13 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Netflix Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Only On Netflix
-        </h6>
+      {/* Action Films */}
+      <div className=" container-fluid mt-4">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflix.map((series) => (
+          {action.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -380,28 +365,27 @@ const Series = () => {
         </div>
       </div>
 
-      {/* Netflix Trending Series */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
-          Trending on Netflix
-        </h6>
+      {/* Romance Films */}
+      <div className=" container-fluid mt-4">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflixTrending.slice(0, 10).map((series, index) => (
-            <TopTenMovieCard movie={series} key={series.id} rank={index + 1} />
+          {romance.map((film) => (
+            <MovieCard
+              movie={film}
+              key={film.id}
+              showBanner={Math.random() < 0.4}
+              onClick={setSelectedMovie}
+            />
           ))}
         </div>
       </div>
 
       {/* Netflix Anime */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Netflix Anime
-        </h6>
+      <div className=" container-fluid mt-4">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflixAnime.map((series) => (
+          {netflixAnime.map((film) => (
             <MovieCard
-              movie={series}
-              key={series.id}
+              movie={film}
+              key={film.id}
               showBanner={Math.random() < 0.4}
               onClick={setSelectedMovie}
             />
@@ -412,4 +396,4 @@ const Series = () => {
   );
 };
 
-export default Series;
+export default BrowseByLanguage;

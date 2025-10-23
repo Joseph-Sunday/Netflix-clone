@@ -496,7 +496,7 @@ const Home = () => {
                   className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
                   onClick={() =>
                     isInList
-                      ? removeFromList(selectedMovie)
+                      ? ""
                       : addToList(selectedMovie)
                   }
                 >

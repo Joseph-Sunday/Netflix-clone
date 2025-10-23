@@ -1,0 +1,8 @@
+.btn-group select {
+    width: 130px;
+    font-size: 10px;
+}
+
+.b-red {
+    border: 1px solid red;
+}

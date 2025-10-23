@@ -20,7 +20,7 @@ const MyList = () => {
         <h1 className="text-light ff-head mx-lg-4">My List</h1>
 
         {myList.length === 0 ? (
-          <p className="text-secondary text-center fs-4 ff-text py-3">
+          <p className="text-secondary text-center fs-4 ff-text py-3 mt-lg py-5">
             Your List is Empty!
           </p>
         ) : (

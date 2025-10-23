@@ -92,7 +92,14 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item fs-sml">
-                <Link to="#" className="nav-link less-white">
+                <Link
+                  to="/browsebylangauge"
+                  className={`nav-link ${
+                    location.pathname === "/browsebylangauge"
+                      ? "active"
+                      : "less-white"
+                  }`}
+                >
                   Browse by Language
                 </Link>
               </li>
@@ -124,7 +131,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="link">
-                <Link to="" className="dropdown-item text-light fs-sml">
+                <Link to="#" className="dropdown-item text-light fs-sml">
                   Games
                 </Link>
               </li>
@@ -134,7 +141,10 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="link">
-                <Link to="" className="dropdown-item text-light fs-sml">
+                <Link
+                  to="/browsebylangauge"
+                  className="dropdown-item text-light fs-sml"
+                >
                   Browse by Langauge
                 </Link>
               </li>

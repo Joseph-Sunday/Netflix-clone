@@ -6,6 +6,7 @@ import Series from "./pages/Series";
 import Films from "./pages/Films";
 import SearchPage from "./pages/SearchPage";
 import MyList from "./pages/MyList";
+import BrowseByLanguage from "./components/BrowseByLanguage";
 import { ListProvider } from "./context/ListContext";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/series" element={<Series />} />
         <Route path="/films" element={<Films />} />
         <Route path="/mylist" element={<MyList />} />
+        <Route path="/browsebylangauge" element={<BrowseByLanguage />} />
         <Route path="/search" element={<SearchPage />} />
       </Routes>
       <Footer />

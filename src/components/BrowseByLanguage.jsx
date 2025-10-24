@@ -1,11 +1,10 @@
 import "../css/BrowseByLanguage.css";
 import MovieCard from "./MovieCard";
-import { useSeries } from "../hooks/useSeries";
-import { useFilms } from "../hooks/useFilms";
+import useLanguageContent from "../hooks/useLanguageContent";
 import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { useList } from "../context/ListContext";
-import { fetchSeries } from "../services/api";
+import { LANGUAGES } from "../data/languages";
 
 // Shuffle Array (of Movies)
 function shuffleArray(array) {
@@ -15,23 +14,7 @@ function shuffleArray(array) {
 const BrowseByLanguage = () => {
   // Langauge State
   const [language, setLanguage] = useState("en");
-  const [results, setResults] = useState([]);
-
-  useEffect(() => {
-    const getMovies = async () => {
-      const data = await fetchSeries(
-        `/discover/movie?with_original_language=${language}`
-      );
-      setResults(shuffleArray(data.results));
-    };
-
-    getMovies();
-  }, [language]);
-
-  // Fetch movies
-  const { popular, trending, topRated, action, romance, netflix } = useFilms();
-  // Fetch series
-  const { netflixAnime, netflixTrending, anime } = useSeries();
+  const content = useLanguageContent(language);
 
   // Movie Modal state
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -53,28 +36,24 @@ const BrowseByLanguage = () => {
               <p className="text-light ff-text fs-sml m-0">
                 Select your preferences
               </p>
-              <div class="btn-group mt-1">
+              <div className="btn-group mt-1">
                 <select
                   className="btn btn-sm text-light border rounded-0 fs-sml"
                   onChange={(e) => setLanguage(e.target.value)}
                   value={language}
                 >
-                  <option value="en">English</option>
-                  <option value="ko">Korean</option>
-                  <option value="hi">Hindi</option>
-                  <option value="ja">Japanese</option>
-                  <option value="es">Spanish</option>
+                  {LANGUAGES.map((lang) => (
+                    <option value={lang.code} key={lang.code}>
+                      {lang.name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
 
-            <div class="btn-group mt-1 d-flex justify-items-center align-items-center">
+            <div className="btn-group mt-1">
               <select className="btn btn-sm text-light border rounded-0 fs-sml">
                 <option value="en">English Au</option>
-                <option value="ko">Korean Au</option>
-                <option value="hi">Hindi Au</option>
-                <option value="ja">Japanese Au</option>
-                <option value="es">Spanish Au</option>
               </select>
             </div>
 
@@ -89,6 +68,16 @@ const BrowseByLanguage = () => {
             </div>
           </div>
         </div>
+        <Section title="Trending" items={content.trending} />
+        <Section title="Action" items={content.action} />
+        <Section title="Romance" items={content.romance} />
+        <Section title="Series" items={content.series} />
+        <Section title="TopRated" items={content.topRated} />
+        <Section title="TopRated" items={content.anime} />
+        <Section title="TopRated" items={content.comedy} />
+        <Section title="TopRated" items={content.actionSeries} />
+        <Section title="TopRated" items={content.romanceSeries} />
+        <Section title="TopRated" items={content.animeSeries} />
       </section>
 
       {/* Movie Details Modal */}
@@ -266,134 +255,28 @@ const BrowseByLanguage = () => {
           </Modal.Body>
         </Modal>
       )}
-
-      {/* Filter results Films */}
-      <div className=" container-fluid">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {results.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Filter results Films */}
-      <div className=" container-fluid">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {results.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Trending Films */}
-      <div className=" container-fluid mt-4">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {trending.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Top Rated Films */}
-      <div className=" container-fluid mt-4">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {topRated.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Netflix Films */}
-      <div className=" container-fluid mt-4">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflix.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Netflix Trending series */}
-      <div className=" container-fluid mt-4">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflixTrending.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Action Films */}
-      <div className=" container-fluid mt-4">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {action.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Romance Films */}
-      <div className=" container-fluid mt-4">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {romance.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Netflix Anime */}
-      <div className=" container-fluid mt-4">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflixAnime.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
-        </div>
-      </div>
     </>
   );
 };
+
+function Section({ title, items }) {
+  return (
+    <div className=" container-fluid">
+      <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+        {items.length > 0 ? (
+          items.map((movie) => (
+            <MovieCard
+              movie={movie}
+              key={movie.id}
+              showBanner={Math.random() < 0.4}
+            />
+          ))
+        ) : (
+          <p className="text-secondary text-center fs-sml">No results found!</p>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default BrowseByLanguage;

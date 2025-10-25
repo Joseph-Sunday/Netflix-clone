@@ -1,10 +1,11 @@
 import "../css/BrowseByLanguage.css";
-import MovieCard from "./MovieCard";
+import MovieCard from "../components/MovieCard";
 import useLanguageContent from "../hooks/useLanguageContent";
 import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { useList } from "../context/ListContext";
 import { LANGUAGES } from "../data/languages";
+
 
 // Shuffle Array (of Movies)
 function shuffleArray(array) {

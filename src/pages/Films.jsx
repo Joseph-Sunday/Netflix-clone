@@ -64,7 +64,7 @@ const Films = () => {
         ) : randomMovieError ? (
           <p>{randomMovieError}</p>
         ) : (
-          <BigMovieCard movie={randomMovie} />
+          <BigMovieCard movie={randomMovie} onClick={setSelectedMovie} />
         )}
       </div>
 
@@ -121,14 +121,12 @@ const Films = () => {
                 <button
                   type="button"
                   className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
-                  onClick={() =>
-                    isInList
-                      ? ""
-                      : addToList(selectedMovie)
-                  }
+                  onClick={() => (isInList ? "" : addToList(selectedMovie))}
                 >
                   <i
-                    className={`bi ${isInList ? "bi-check text-danger": "bi-plus-lg"}`}
+                    className={`bi ${
+                      isInList ? "bi-check text-danger" : "bi-plus-lg"
+                    }`}
                   ></i>
                 </button>
                 <button

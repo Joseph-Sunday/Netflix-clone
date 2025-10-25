@@ -1,7 +1,7 @@
 import "../css/BigMovieCard.css";
 import "../css/App.css";
 
-const BigMovieCard = ({ movie }) => {
+const BigMovieCard = ({ movie, onClick }) => {
   const movieTitle = movie.title ? movie.title : movie.name;
 
   return (
@@ -34,6 +34,7 @@ const BigMovieCard = ({ movie }) => {
           <button
             className="big-movie-overlay-btn2 btn btn-sm text-light px-2 ff-text fs-sml"
             type="button"
+            onClick={() => onClick(movie)}
           >
             <i className="bi bi-info-circle"></i> More Info
           </button>

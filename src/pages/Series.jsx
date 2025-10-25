@@ -65,7 +65,7 @@ const Series = () => {
         ) : randomSeriesError ? (
           <p>{randomSeriesError}</p>
         ) : (
-          <BigMovieCard movie={randomSeries} />
+          <BigMovieCard movie={randomSeries} onClick={setSelectedMovie} />
         )}
       </div>
 
@@ -105,11 +105,7 @@ const Series = () => {
                 <button
                   type="button"
                   className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
-                  onClick={() =>
-                    isInList
-                      ? ""
-                      : addToList(selectedMovie)
-                  }
+                  onClick={() => (isInList ? "" : addToList(selectedMovie))}
                 >
                   <i
                     className={`"bi ${

@@ -427,7 +427,7 @@ const Home = () => {
         ) : randomMovieError ? (
           <p>{randomMovieError}</p>
         ) : (
-          <BigMovieCard movie={movie} />
+          <BigMovieCard movie={movie} onClick={setSelectedMovie} />
         )}
       </div>
 
@@ -494,11 +494,7 @@ const Home = () => {
                 <button
                   type="button"
                   className="btn bg-dark rounded-circle d-flex justify-content-center align-items-center"
-                  onClick={() =>
-                    isInList
-                      ? ""
-                      : addToList(selectedMovie)
-                  }
+                  onClick={() => (isInList ? "" : addToList(selectedMovie))}
                 >
                   <i
                     className={`"bi ${

@@ -77,11 +77,6 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item fs-sml">
-                <Link to="#" className="nav-link less-white">
-                  Games
-                </Link>
-              </li>
-              <li className="nav-item fs-sml">
                 <Link
                   to="/mylist"
                   className={`nav-link ${
@@ -103,6 +98,18 @@ const NavBar = () => {
                   Browse by Language
                 </Link>
               </li>
+              <li className="nav-item fs-sml">
+                <Link
+                  to="/smartrecommendation"
+                  className={`nav-link ${
+                    location.pathname === "/smartrecommendation"
+                      ? "active"
+                      : "less-white"
+                  }`}
+                >
+                  Smart Recommendation
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="btn-group d-md-none me-auto mx-2">
@@ -116,36 +123,67 @@ const NavBar = () => {
             </button>
             <ul className="dropdown-menu bg-black wdt-sml">
               <li className="link">
-                <Link to="/" className="dropdown-item text-light fs-sml">
+                <Link
+                  to="/"
+                  className={`dropdown-item text-light fs-sml ${
+                    location.pathname === "/"
+                      ? "bg-dark"
+                      : ""
+                  }`}
+                >
                   Home
                 </Link>
               </li>
               <li className="link">
-                <Link to="/series" className="dropdown-item text-light fs-sml">
+                <Link
+                  to="/series"
+                  className={`dropdown-item text-light fs-sml ${
+                    location.pathname === "/series" ? "bg-dark" : ""
+                  }`}
+                >
                   Series
                 </Link>
               </li>
               <li className="link">
-                <Link to="/films" className="dropdown-item text-light fs-sml">
+                <Link
+                  to="/films"
+                  className={`dropdown-item text-light fs-sml ${
+                    location.pathname === "/films" ? "bg-dark" : ""
+                  }`}
+                >
                   Films
                 </Link>
               </li>
               <li className="link">
-                <Link to="#" className="dropdown-item text-light fs-sml">
-                  Games
-                </Link>
-              </li>
-              <li className="link">
-                <Link to="/mylist" className="dropdown-item text-light fs-sml">
+                <Link
+                  to="/mylist"
+                  className={`dropdown-item text-light fs-sml ${
+                    location.pathname === "/mylist" ? "bg-dark" : ""
+                  }`}
+                >
                   My List
                 </Link>
               </li>
               <li className="link">
                 <Link
-                  to="/browsebylangauge"
-                  className="dropdown-item text-light fs-sml"
+                  to="/browsebylanguage"
+                  className={`dropdown-item text-light fs-sml ${
+                    location.pathname === "/browsebylanguage" ? "bg-dark" : ""
+                  }`}
                 >
-                  Browse by Langauge
+                  Browse by Language
+                </Link>
+              </li>
+              <li className="link">
+                <Link
+                  to="/smartrecommendation"
+                  className={`dropdown-item text-light fs-sml ${
+                    location.pathname === "/smartrecommendation"
+                      ? "bg-dark"
+                      : ""
+                  }`}
+                >
+                  Smart Recommendation
                 </Link>
               </li>
             </ul>

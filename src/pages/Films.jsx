@@ -128,9 +128,7 @@ const Films = () => {
                   }
                 >
                   <i
-                    className={`"bi ${
-                      isInList ? "bi-check-lg text-danger" : "bi-plus-lg"
-                    }fs-6 text-light"`}
+                    className={`bi ${isInList ? "bi-check text-danger": "bi-plus-lg"}`}
                   ></i>
                 </button>
                 <button

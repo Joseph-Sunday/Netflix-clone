@@ -16,15 +16,6 @@ const BrowseByLanguage = () => {
   const [language, setLanguage] = useState("en");
   const content = useLanguageContent(language);
 
-  // Movie Modal state
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  // Show full text in modal
-  const [showFull, setShowFull] = useState(false);
-
-  // My List State
-  const { addToList, removeFromList, myList } = useList();
-  const isInList = myList.some((item) => item.id === selectedMovie?.id);
-
   return (
     <>
       <section className="">
@@ -79,7 +70,21 @@ const BrowseByLanguage = () => {
         <Section title="TopRated" items={content.romanceSeries} />
         <Section title="TopRated" items={content.animeSeries} />
       </section>
+    </>
+  );
+};
 
+function Section({ title, items }) {
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  // Show full text in modal
+  const [showFull, setShowFull] = useState(false);
+
+  // My List State
+  const { addToList, removeFromList, myList } = useList();
+  const isInList = myList.some((item) => item.id === selectedMovie?.id);
+
+  return (
+    <>
       {/* Movie Details Modal */}
       {selectedMovie && (
         <Modal
@@ -255,27 +260,25 @@ const BrowseByLanguage = () => {
           </Modal.Body>
         </Modal>
       )}
-    </>
-  );
-};
-
-function Section({ title, items }) {
-  return (
-    <div className=" container-fluid">
-      <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-        {items.length > 0 ? (
-          items.map((movie) => (
-            <MovieCard
-              movie={movie}
-              key={movie.id}
-              showBanner={Math.random() < 0.4}
-            />
-          ))
-        ) : (
-          <p className="text-secondary text-center fs-sml">No results found!</p>
-        )}
+      <div className=" container-fluid">
+        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+          {items.length > 0 ? (
+            items.map((movie) => (
+              <MovieCard
+                movie={movie}
+                key={movie.id}
+                showBanner={Math.random() < 0.4}
+                onClick={setSelectedMovie}
+              />
+            ))
+          ) : (
+            <p className="text-secondary text-center fs-sml">
+              No results found!
+            </p>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

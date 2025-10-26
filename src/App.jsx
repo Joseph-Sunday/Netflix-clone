@@ -14,20 +14,22 @@ const App = () => {
   return (
     <ListProvider>
       <Router>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/series" element={<Series />} />
-        <Route path="/films" element={<Films />} />
-        <Route path="/mylist" element={<MyList />} />
-        <Route path="/browsebylanguage" element={<BrowseByLanguage />} />
-        <Route path="/smartrecommendation" element={<SmartRecommendation />} />
-        <Route path="/search" element={<SearchPage />} />
-      </Routes>
-      <Footer />
-    </Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/series" element={<Series />} />
+          <Route path="/films" element={<Films />} />
+          <Route path="/mylist" element={<MyList />} />
+          <Route path="/browsebylanguage" element={<BrowseByLanguage />} />
+          <Route
+            path="/smartrecommendation"
+            element={<SmartRecommendation />}
+          />
+          <Route path="/search" element={<SearchPage />} />
+        </Routes>
+        <Footer />
+      </Router>
     </ListProvider>
-    
   );
 };
 

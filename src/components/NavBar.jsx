@@ -88,9 +88,9 @@ const NavBar = () => {
               </li>
               <li className="nav-item fs-sml">
                 <Link
-                  to="/browsebylangauge"
+                  to="/browsebylanguage"
                   className={`nav-link ${
-                    location.pathname === "/browsebylangauge"
+                    location.pathname === "/browsebylanguage"
                       ? "active"
                       : "less-white"
                   }`}
@@ -126,9 +126,7 @@ const NavBar = () => {
                 <Link
                   to="/"
                   className={`dropdown-item text-light fs-sml ${
-                    location.pathname === "/"
-                      ? "bg-dark"
-                      : ""
+                    location.pathname === "/" ? "bg-dark" : ""
                   }`}
                 >
                   Home

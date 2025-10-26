@@ -261,6 +261,7 @@ function Section({ title, items }) {
           </Modal.Body>
         </Modal>
       )}
+      
       <div className=" container-fluid">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
           {items.length > 0 ? (

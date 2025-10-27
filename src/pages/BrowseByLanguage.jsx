@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { useList } from "../context/ListContext";
 import { LANGUAGES } from "../data/languages";
-
+import { getGenreNames } from "../utils/getGenreNames";
 
 // Shuffle Array (of Movies)
 function shuffleArray(array) {
@@ -83,6 +83,12 @@ function Section({ title, items }) {
   // My List State
   const { addToList, removeFromList, myList } = useList();
   const isInList = myList.some((item) => item.id === selectedMovie?.id);
+
+  // Genre Names
+  let genreNames = getGenreNames(selectedMovie?.genre_ids || []);
+  genreNames = genreNames.flatMap((name) =>
+    name.split(",").map((g) => g.trim())
+  );
 
   return (
     <>
@@ -171,11 +177,25 @@ function Section({ title, items }) {
                       ⭐️{Math.floor(selectedMovie.vote_average)}
                     </strong>
                   </p>
-                  <p className="text-secondary fs-sml ff-text d-flex justify-content-center align-items-baseline gap-2">
+                  <p className="text-secondary fs-sml ff-text d-flex justify-content-center align-items-baseline">
                     <strong>
-                      <i className="text-secondary">Genre: </i>"
-                      {selectedMovie.genre_ids.join("", "").slice(0, 3)}"
+                      <i className="text-secondary">Genre: </i>
                     </strong>
+                    {genreNames.length > 0 ? (
+                      <span className="fs-sml text-light ff-text">
+                        <i className="bi bi-dot"></i>
+                        {genreNames.length > 1
+                          ? genreNames[0] + ", " + genreNames[1]
+                          : genreNames[0]}
+                        <i className="bi bi-dot"></i>
+                      </span>
+                    ) : (
+                      <span className="text-light text-center">
+                        <i className="bi bi-dot"></i>
+                        No genres!
+                        <i className="bi bi-dot"></i>
+                      </span>
+                    )}
                   </p>
                 </div>
 
@@ -209,7 +229,24 @@ function Section({ title, items }) {
                   <i>Cast: {"{...}"}</i>
                 </div>
                 <div className="modal-body-genres my-2 ff-text text-secondary fs-sml">
-                  <i>Genres: {"{...}"}</i>
+                  <i>
+                    Genres:
+                    {genreNames.length > 0 ? (
+                      <span className="fs-sml ff-text">
+                        <i className="bi bi-dot"></i>
+                        {genreNames.length > 1
+                          ? genreNames[0] + ", " + genreNames[1]
+                          : genreNames[0]}
+                        <i className="bi bi-dot"></i>
+                      </span>
+                    ) : (
+                      <span className="text-light text-center">
+                        <i className="bi bi-dot"></i>
+                        No genres!
+                        <i className="bi bi-dot"></i>
+                      </span>
+                    )}
+                  </i>
                 </div>
                 <div className="modal-body-description ff-text text-secondary fs-sml ">
                   <i>This series is: {"{...}"}</i>
@@ -261,7 +298,7 @@ function Section({ title, items }) {
           </Modal.Body>
         </Modal>
       )}
-      
+
       <div className=" container-fluid">
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
           {items.length > 0 ? (

@@ -23,7 +23,6 @@ const SmartRecommendation = () => {
   genreNames = genreNames.flatMap((name) =>
     name.split(",").map((g) => g.trim())
   );
-  console.log("genreNames", genreNames);
 
   return (
     <>
@@ -198,12 +197,16 @@ const SmartRecommendation = () => {
                     {genreNames.length > 0 ? (
                       <span className="fs-sml text-light ff-text">
                         <i className="bi bi-dot"></i>
-                        {genreNames[0]}, {genreNames[1]}
+                        {genreNames.length > 1
+                          ? genreNames[0] + ", " + genreNames[1]
+                          : genreNames[0]}
                         <i className="bi bi-dot"></i>
                       </span>
                     ) : (
                       <span className="text-light text-center">
-                        No genres available
+                        <i className="bi bi-dot"></i>
+                        No genres!
+                        <i className="bi bi-dot"></i>
                       </span>
                     )}
                   </p>
@@ -244,12 +247,16 @@ const SmartRecommendation = () => {
                     {genreNames.length > 0 ? (
                       <span className="fs-sml text-light ff-text">
                         <i className="bi bi-dot"></i>
-                        {genreNames[0]}, {genreNames[1]}
+                        {genreNames.length > 1
+                          ? genreNames[0] + ", " + genreNames[1]
+                          : genreNames[0]}
                         <i className="bi bi-dot"></i>
                       </span>
                     ) : (
                       <span className="text-light text-center">
-                        No genres available
+                        <i className="bi bi-dot"></i>
+                        No genres!
+                        <i className="bi bi-dot"></i>
                       </span>
                     )}
                   </i>

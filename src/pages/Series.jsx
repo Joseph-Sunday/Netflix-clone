@@ -5,6 +5,7 @@ import MovieCard from "../components/MovieCard";
 import TopTenMovieCard from "../components/TopTenMovieCard";
 import { useSeries } from "../hooks/useSeries";
 import { useList } from "../context/ListContext";
+import { getGenreNames } from "../utils/getGenreNames";
 import { Modal } from "react-bootstrap";
 import "../css/App.css";
 import "../css/MovieCardModal.css";
@@ -55,6 +56,12 @@ const Series = () => {
   // My List
   const { addToList, removeFromList, myList } = useList();
   const isInList = myList.some((item) => item.id === selectedMovie?.id);
+
+  // Genre Names
+  let genreNames = getGenreNames(selectedMovie?.genre_ids || []);
+  genreNames = genreNames.flatMap((name) =>
+    name.split(",").map((g) => g.trim())
+  );
 
   return (
     <>
@@ -154,11 +161,25 @@ const Series = () => {
                       ⭐️{Math.floor(selectedMovie.vote_average)}
                     </strong>
                   </p>
-                  <p className="text-secondary fs-sml ff-text d-flex justify-content-center align-items-baseline gap-2">
+                  <p className="text-secondary fs-sml ff-text d-flex justify-content-center align-items-baseline">
                     <strong>
-                      <i className="text-secondary">Genre: </i>"
-                      {selectedMovie.genre_ids.join("", "").slice(0, 3)}"
+                      <i className="text-secondary">Genre:</i>
                     </strong>
+                    {genreNames.length > 0 ? (
+                      <span className="fs-sml text-light ff-text">
+                        <i className="bi bi-dot"></i>
+                        {genreNames.length > 1
+                          ? genreNames[0] + ", " + genreNames[1]
+                          : genreNames[0]}
+                        <i className="bi bi-dot"></i>
+                      </span>
+                    ) : (
+                      <span className="text-light text-center">
+                        <i className="bi bi-dot"></i>
+                        No genres!
+                        <i className="bi bi-dot"></i>
+                      </span>
+                    )}
                   </p>
                 </div>
 
@@ -192,7 +213,24 @@ const Series = () => {
                   <i>Cast: {"{...}"}</i>
                 </div>
                 <div className="modal-body-genres my-2 ff-text text-secondary fs-sml">
-                  <i>Genres: {"{...}"}</i>
+                  <i>
+                    Genres:
+                    {genreNames.length > 0 ? (
+                      <span className="fs-sml ff-text">
+                        <i className="bi bi-dot"></i>
+                        {genreNames.length > 1
+                          ? genreNames[0] + ", " + genreNames[1]
+                          : genreNames[0]}
+                        <i className="bi bi-dot"></i>
+                      </span>
+                    ) : (
+                      <span className="text-light text-center">
+                        <i className="bi bi-dot"></i>
+                        No genres!
+                        <i className="bi bi-dot"></i>
+                      </span>
+                    )}
+                  </i>
                 </div>
                 <div className="modal-body-description ff-text text-secondary fs-sml ">
                   <i>This series is: {"{...}"}</i>

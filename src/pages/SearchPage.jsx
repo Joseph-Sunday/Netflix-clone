@@ -39,7 +39,7 @@ const SearchPage = () => {
             Recommended series and films
           </h3>
           {recommendedMovies.map((movie) => (
-            <RecommendedMovies movie={movie} />
+            <RecommendedMovies key={movie.id} movie={movie} />
           ))}
         </div>
       )}

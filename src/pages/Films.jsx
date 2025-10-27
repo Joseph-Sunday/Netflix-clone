@@ -131,9 +131,9 @@ const Films = () => {
                   onClick={() => (isInList ? "" : addToList(selectedMovie))}
                 >
                   <i
-                    className={`bi ${
-                      isInList ? "bi-check text-danger" : "bi-plus-lg"
-                    }`}
+                    className={`"bi ${
+                      isInList ? "bi-check-lg text-danger" : "bi-plus-lg"
+                    } fs-6 text-light"`}
                   ></i>
                 </button>
                 <button
@@ -145,8 +145,8 @@ const Films = () => {
               </div>
             </div>
 
-            <section className="modal-body-container container-fluid d-md-flex justify-content-between align-items-start gap-5 px-lg-3">
-              <div className="">
+            <section className="modal-body-container container-fluid d-lg-flex justify-content-between align-items-start px-lg-4">
+              <div className="modal-body-container-first-child">
                 <div className="d-flex justify-content-start align-items-center gap-4">
                   <p className="text-light fs-sml">
                     <strong>
@@ -162,7 +162,7 @@ const Films = () => {
                   )}
                 </div>
 
-                <div className="modal-head-title text-light ff-head fs-sml wrap px-0">
+                <div className="text-light ff-head fs-sml wrap px-0">
                   <i className="bi bi-dot"></i>
                   {selectedMovie.title
                     ? selectedMovie.title
@@ -170,7 +170,7 @@ const Films = () => {
                   <i className="bi bi-dot"></i>
                 </div>
 
-                <div className="d-flex justify-content-start align-items-center gap-5 mt-2">
+                <div className="d-flex justify-content-start align-items-center gap-lg-5 gap-3 mt-2">
                   <p className="text-secondary fs-sml ff-text d-flex justify-content-center align-items-baseline gap-2">
                     <strong>
                       <i className="text-secondary">Rating: </i>
@@ -206,7 +206,7 @@ const Films = () => {
                     </button>
                     <h6 className="text-light ff-text">Most liked</h6>
                   </div>
-                  <p className="fs-sml ff-text mt-2 my-1">
+                  <p className="fs-sml ff-text mt-2 my-1 w-50">
                     {showFull
                       ? selectedMovie.overview
                       : selectedMovie.overview.slice(0, 150) + "..."}
@@ -224,33 +224,35 @@ const Films = () => {
                   )}
                 </div>
               </div>
-              <div className="mt-1">
-                <div className="modal-body-cast fs-sml ff-text text-secondary">
-                  <i>Cast: {"{...}"}</i>
-                </div>
-                <div className="modal-body-genres my-2 ff-text text-secondary fs-sml">
-                  <i>
-                    Genres:
-                    {genreNames.length > 0 ? (
-                      <span className="fs-sml ff-text">
-                        <i className="bi bi-dot"></i>
-                        {genreNames.length > 1
-                          ? genreNames[0] + ", " + genreNames[1]
-                          : genreNames[0]}
-                        <i className="bi bi-dot"></i>
-                      </span>
-                    ) : (
-                      <span className="text-light text-center">
-                        <i className="bi bi-dot"></i>
-                        No genres!
-                        <i className="bi bi-dot"></i>
-                      </span>
-                    )}
-                  </i>
-                </div>
-                <div className="modal-body-description ff-text text-secondary fs-sml ">
-                  <i>This series is: {"{...}"}</i>
-                </div>
+              <div className="">
+                <strong>
+                  <div className="modal-body-cast fs-sml ff-text text-secondary">
+                    <i>Cast: {"{...}"}</i>
+                  </div>
+                  <div className="modal-body-genres my-2 ff-text text-secondary fs-sml">
+                    <i>
+                      Genres:
+                      {genreNames.length > 0 ? (
+                        <span className="fs-sml ff-text">
+                          <i className="bi bi-dot"></i>
+                          {genreNames.length > 1
+                            ? genreNames[0] + ", " + genreNames[1]
+                            : genreNames[0]}
+                          <i className="bi bi-dot"></i>
+                        </span>
+                      ) : (
+                        <span className="text-light text-center">
+                          <i className="bi bi-dot"></i>
+                          No genres!
+                          <i className="bi bi-dot"></i>
+                        </span>
+                      )}
+                    </i>
+                  </div>
+                  <div className="modal-body-description ff-text text-secondary fs-sml ">
+                    <i>This series is: {"{...}"}</i>
+                  </div>
+                </strong>
               </div>
             </section>
 

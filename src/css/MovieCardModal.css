@@ -38,7 +38,7 @@
 .modal-head-container {
   position: absolute;
   width: 100%;
-  top: 80px;
+  top: 300px;
 }
 
 .modal-head-poster img {
@@ -46,7 +46,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 350px;
+  height: 500px;
   object-fit: cover;
   object-position: 50% 20%;
   border-top-right-radius: 5px;
@@ -54,6 +54,7 @@
 }
 
 .modal-head-title {
+  display: none;
   padding-left: 0.5em;
   font-weight: 600;
   text-shadow: 5px 4px 5px #000000de;
@@ -89,7 +90,7 @@
 
 /* Modal Body Styles */
 .modal-body-container {
-  margin-top: 20em;
+  margin-top: 29em;
 }
 
 .modal-body-readmore-btn:hover {
@@ -135,6 +136,14 @@
 
 /* Media Styles */
 @media (min-width: 768px) {
+  .modal-head-title {
+    display: block;
+  }
+  .modal-head-container {
+    position: absolute;
+    width: 100%;
+    top: 180px;
+  }
   .modal-body-overview-episodes-poster {
     width: 200px;
     border-radius: 5px;
@@ -190,9 +199,7 @@
     pointer-events: none;
     transition: opacity 0.4s ease;
   }
-  .modal-head-container {
-    position: absolute;
-    width: 100%;
-    top: 180px;
+  .modal-body-container-first-child {
+    width: 70%;
   }
 }

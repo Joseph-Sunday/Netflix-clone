@@ -1,16 +1,18 @@
 import { StrictMode } from "react";
-import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
-import App from "./App.jsx";
+import App from "./App";
+import { ListProvider } from "./context/ListContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <ListProvider>
+        <App />
+      </ListProvider>
     </BrowserRouter>
   </StrictMode>
 );

@@ -17,7 +17,6 @@ import { ListProvider } from "./context/ListContext";
 
 const App = () => {
   return (
-    <BrowserRouter>
       <ListProvider>
         <Router>
           <NavBar />
@@ -36,7 +35,6 @@ const App = () => {
           <Footer />
         </Router>
       </ListProvider>
-    </BrowserRouter>
   );
 };
 

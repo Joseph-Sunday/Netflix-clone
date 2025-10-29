@@ -1,6 +1,7 @@
 import "../css/App.css";
 import "../css/MovieCard.css";
 import { useList } from "../context/ListContext";
+import netflixLogo from "../assets/netflixLogo.png";
 
 const MovieCard = ({ movie, showBanner, onClick }) => {
   // My List logic
@@ -13,17 +14,16 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
   return (
     <div className="card movie-card bg-dark">
       <img
+        src="/images/netflixLogo.png"
+        className="movie-card-netflixLogo"
+        alt="netflix-logo"
+      />
+      <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         className="movie-card-poster-img"
         alt={movieTitle}
         onClick={() => onClick(movie)}
       />
-      <div className="movie-card-overlay">
-        <div className="movie-card-brands">
-          <img src="/" className="movie-card-brand-img1" alt="" />
-          <img src="/" className="movie-card-brand-img2" alt="" />
-        </div>
-      </div>
       {showBanner && (
         <span className="movie-card-banner-btm fs-sml">Recently Added</span>
       )}

@@ -16,6 +16,6 @@
 
 .top-ten-movie-card-poster {
     width: 80%;
-    min-height: max-content;
+    max-height: max-content;
     z-index: 1;
 }

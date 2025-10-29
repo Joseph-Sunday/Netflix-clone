@@ -53,7 +53,11 @@
 }
 
 .movie-card-details-overview {
-  white-space: wrap;
+  flex-shrink: 1;
+  min-width: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .movie-card-details-buttons button {
@@ -70,9 +74,12 @@
 
 .movie-card .movie-card-details {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
   top: 100%;
-  /* max-height: 0;
-  overflow: hidden; */
+  max-width: 100%;
   color: #fff;
   transition: top 0.8s ease, padding 0.8s ease;
   border-top-left-radius: 10px;

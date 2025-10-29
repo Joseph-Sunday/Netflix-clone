@@ -45,7 +45,9 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
               }
             >
               <i
-                className={`bi ${isInList ? "bi-check-lg text-danger " : "bi-plus-lg"}`}
+                className={`bi ${
+                  isInList ? "bi-check-lg text-danger " : "bi-plus-lg"
+                }`}
               ></i>
             </button>
             <button

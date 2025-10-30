@@ -125,7 +125,7 @@
     transition: transform 0.7s ease;
   }
 
-  .movie-card.hovered .movie-card-details {
+  .movie-card:hover .movie-card-details {
     padding: 5px;
     transform: translateY(5%);
   }

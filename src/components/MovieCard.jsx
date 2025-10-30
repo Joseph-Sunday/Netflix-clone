@@ -26,9 +26,9 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
 
   return (
     <div
-      className={`card movie-card bg-dark ${isHovered ? "hovered" : ""}`}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => isHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      className={`card movie-card bg-dark ${isHovered ? "hovered" : ""}`}
     >
       <img
         src={netflixLogo}
@@ -39,6 +39,7 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         className="movie-card-poster-img"
         alt={movieTitle}
+        onClick={handleOpenModal}
       />
       {showBanner && (
         <span className="movie-card-banner-btm fs-sml">Recently Added</span>

@@ -533,7 +533,7 @@ const Series = () => {
           Trending in Nigeria
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {trending.slice(0, 10).map((series, index) => (
+          {trending.slice(0, 9).map((series, index) => (
             <TopTenMovieCard movie={series} key={series.id} rank={index + 1} />
           ))}
         </div>
@@ -630,7 +630,7 @@ const Series = () => {
           Trending on Netflix
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflixTrending.slice(0, 10).map((series, index) => (
+          {netflixTrending.slice(0, 9).map((series, index) => (
             <TopTenMovieCard movie={series} key={series.id} rank={index + 1} />
           ))}
         </div>

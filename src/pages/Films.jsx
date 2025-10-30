@@ -307,7 +307,7 @@ const Films = () => {
           Trending Today
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {trending.slice(0, 10).map((film, index) => (
+          {trending.slice(0, 9).map((film, index) => (
             <TopTenMovieCard movie={film} key={film.id} rank={index + 1} />
           ))}
         </div>
@@ -387,7 +387,7 @@ const Films = () => {
           Trending This Week
         </h6>
         <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {trendingThisWeek.slice(0, 10).map((film, index) => (
+          {trendingThisWeek.slice(0, 9).map((film, index) => (
             <TopTenMovieCard movie={film} key={film.id} rank={index + 1} />
           ))}
         </div>

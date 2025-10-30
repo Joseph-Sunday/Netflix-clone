@@ -17,7 +17,7 @@ body {
   background-color: #000;
 }
 
-.bg-net-black { 
+.bg-net-black {
   background-color: #141414;
 }
 
@@ -63,6 +63,12 @@ body {
   min-width: 7em;
 }
 
+/*  Navbar styles */
+
+nav {
+  z-index: 1000;
+}
+
 .navbar-brand-arc {
   font-family: "Bebas Neue", sans-serif;
   letter-spacing: 4px;
@@ -73,7 +79,6 @@ body {
 .navbar-custom {
   background-color: transparent;
   transition: background-color 0.4s ease;
-  z-index: 1000;
 }
 
 nav.scrolled {
@@ -96,30 +101,29 @@ nav.scrolled {
 
 /* Footer Styles */
 
-
 .footer-links .link {
   text-decoration: none;
   color: #a1a1a1;
 }
 
-.footer-links .link:hover{
+.footer-links .link:hover {
   text-decoration: underline;
   color: #a1a1a1d8;
-  transition: color .2s ease;
+  transition: color 0.2s ease;
 }
 
 /* Media Queries */
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .recommended-head {
     font-size: 20px;
   }
- }
+}
 
- @media(min-width: 1024px) {
+@media (min-width: 1024px) {
   .fs-lg-movie-card {
     font-size: 20px;
   }
   .recommended-head {
     font-size: 25px;
   }
- }
+}

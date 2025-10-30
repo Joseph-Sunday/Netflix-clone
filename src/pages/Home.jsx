@@ -409,6 +409,13 @@ const Home = () => {
 
   // Selected movie onClick
   const [selectedMovie, setSelectedMovie] = useState(null);
+  // Close Modal
+  const handleOnHide = () => {
+    document
+      .querySelectorAll(".movie-card")
+      .forEach((card) => card.classList.remove("hovered"));
+    setSelectedMovie(null);
+  };
 
   // Show full text
   const [showFull, setShowFull] = useState(false);
@@ -469,7 +476,7 @@ const Home = () => {
       {selectedMovie && (
         <Modal
           show={true}
-          onHide={() => setSelectedMovie(null)}
+          onHide={handleOnHide}
           centered
           size="lg"
           animation={true}
@@ -525,7 +532,7 @@ const Home = () => {
                     <strong>
                       {selectedMovie.release_date
                         ? selectedMovie.release_date.slice(0, 4)
-                        : selectedMovie.first_air_date.slice(0, 4)}
+                        : selectedMovie?.first_air_date.slice(0, 4)}
                     </strong>
                   </p>
                   {selectedMovie.name ? (
@@ -769,7 +776,7 @@ const Home = () => {
               Trending in Nigeria
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-              {trendingMovies.slice(0, 10).map((movie, index) => (
+              {trendingMovies.slice(0, 9).map((movie, index) => (
                 <TopTenMovieCard
                   movie={movie}
                   key={movie.id}
@@ -904,7 +911,7 @@ const Home = () => {
               Trending Shows
             </h6>
             <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-              {trendingShows.slice(0, 10).map((shows, index) => (
+              {trendingShows.slice(0, 9).map((shows, index) => (
                 <TopTenMovieCard
                   movie={shows}
                   key={shows.id}
@@ -1039,7 +1046,7 @@ const Home = () => {
               Trending This Week
             </h6>
             <div className="container-fluid my-2 d-flex gap-2 scroll-container">
-              {trendingThisWeek.slice(0, 10).map((movie, index) => (
+              {trendingThisWeek.slice(0, 9).map((movie, index) => (
                 <TopTenMovieCard
                   movie={movie}
                   key={movie.id}

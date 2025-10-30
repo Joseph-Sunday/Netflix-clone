@@ -31,9 +31,9 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
       className={`card movie-card bg-dark ${isHovered ? "hovered" : ""}`}
     >
       <img
-        src="/netflixLogo.png"
+        src={netflixLogo}
         className="movie-card-netflixLogo"
-        alt="netflix-logo"
+        alt="netflix logo"
       />
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

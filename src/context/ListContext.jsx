@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const ListContext = createContext();
 
@@ -21,13 +22,22 @@ export function ListProvider({ children }) {
   // Add to list
   const addToList = (movie) => {
     setMyList((prev) => {
-      if (prev.find((item) => item.id === movie.id)) return prev;
+      if (prev.find((item) => item.id === movie.id)) {
+        return prev;
+      }
       return [...prev, movie];
     });
+    if (myList.find((item) => item.id === movie.id)) {
+      toast("Already in My List");
+    } else {
+      toast.success(`Added: ${movie.title || movie.name}`);
+    }
   };
 
   // Remove from List
   const removeFromList = (id) => {
+    const removedMovie = myList.find((item) => item.id === id);
+    toast.error(`Removed: ${removedMovie.title || removedMovie.name}`);
     setMyList((prev) => prev.filter((item) => item.id !== id));
   };
 

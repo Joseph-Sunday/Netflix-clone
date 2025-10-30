@@ -9,9 +9,17 @@ import MyList from "./pages/MyList";
 import BrowseByLanguage from "./pages/BrowseByLanguage";
 import SmartRecommendation from "./pages/SmartRecommendation";
 
+import { Toaster } from "react-hot-toast";
+
 const App = () => {
   return (
     <>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          className: "fs-sml text-light border-0 bg-black ff-text toaster",
+        }}
+      />
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />

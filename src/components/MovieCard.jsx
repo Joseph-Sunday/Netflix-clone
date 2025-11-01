@@ -28,10 +28,11 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
       onMouseLeave={() => setIsHovered(false)}
       className={`card movie-card bg-dark ${isHovered ? "hovered" : ""}`}
     >
+      {console.log("logo url:", netflixLogo)}
       <img
         src={netflixLogo}
+        alt="Netflix-Logo"
         className="movie-card-netflixLogo"
-        alt="netflix logo"
       />
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

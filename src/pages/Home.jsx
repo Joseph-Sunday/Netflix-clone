@@ -22,6 +22,7 @@ import {
 } from "../services/api";
 import { useEffect, useState } from "react";
 import TopTenMovieCard from "../components/TopTenMovieCard";
+import SkeletonMovieCard from "../components/SkeletonMovieCard";
 import { Modal } from "react-bootstrap";
 import "../css/MovieCardModal.css";
 import { useList } from "../context/ListContext";
@@ -450,11 +451,13 @@ const Home = () => {
       {/* Popular Movies */}
       <div>
         {popularMoviesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading popular movies...
+          <p className="text-light text-center fs-sml mt-lg ff-text">
+            Loading...
           </p>
         ) : popularMoviesError ? (
-          <p className="text-danger mt-lg fs-sml">{popularMoviesError}</p>
+          <p className="text-danger text-center mt-lg fs-sml">
+            {popularMoviesError}
+          </p>
         ) : (
           <div className="px-lg-5">
             <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">

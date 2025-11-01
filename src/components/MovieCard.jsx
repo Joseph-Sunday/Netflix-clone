@@ -15,14 +15,12 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
   // Movie name/title logic
   const movieTitle = movie.title ? movie.title : movie.name;
 
+  // Show full text
+
   function handleOpenModal() {
     setIsHovered(false);
     onClick(movie);
   }
-
-  const handleCloseModal = () => {
-    document.body.classList.remove("modal-open");
-  };
 
   return (
     <div

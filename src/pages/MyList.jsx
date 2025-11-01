@@ -1,6 +1,6 @@
 import { useList } from "../context/ListContext";
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getGenreNames } from "../utils/getGenreNames";
 import RecommendedMovies from "../components/RecommendedMovies";
 import "../css/App.css";
@@ -10,10 +10,26 @@ import "../css/Search.css";
 const MyList = () => {
   const { myList } = useList();
 
-  // Modal state
+  // Selected movie onClick
   const [selectedMovie, setSelectedMovie] = useState(null);
+
   // Show full text
   const [showFull, setShowFull] = useState(false);
+  useEffect(() => {
+    if (selectedMovie) {
+      setShowFull(false);
+    }
+  }, [selectedMovie]);
+
+  // Close Modal
+  const handleOnHide = () => {
+    document
+      .querySelectorAll(".movie-card")
+      .forEach((card) => card.classList.remove("hovered"));
+
+    setShowFull(false);
+    setSelectedMovie(null);
+  };
 
   // Genre Names
   let genreNames = getGenreNames(selectedMovie?.genre_ids || []);
@@ -49,7 +65,7 @@ const MyList = () => {
       {selectedMovie && (
         <Modal
           show={true}
-          onHide={() => setSelectedMovie(null)}
+          onHide={handleOnHide}
           centered
           size="lg"
           animation={true}

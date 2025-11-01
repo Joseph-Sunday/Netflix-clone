@@ -46,11 +46,26 @@ const Films = () => {
     netflix,
   } = useFilms();
 
-  // Selected Movie (Modal)
+  // Selected movie onClick
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  // Show Full Text
+  // Show full text
   const [showFull, setShowFull] = useState(false);
+  useEffect(() => {
+    if (selectedMovie) {
+      setShowFull(false);
+    }
+  }, [selectedMovie]);
+
+  // Close Modal
+  const handleOnHide = () => {
+    document
+      .querySelectorAll(".movie-card")
+      .forEach((card) => card.classList.remove("hovered"));
+
+    setShowFull(false);
+    setSelectedMovie(null);
+  };
 
   // My list
   const { addToList, removeFromList, myList } = useList();
@@ -96,7 +111,7 @@ const Films = () => {
       {selectedMovie && (
         <Modal
           show={true}
-          onHide={() => setSelectedMovie(null)}
+          onHide={handleOnHide}
           centered
           size="lg"
           animation={true}

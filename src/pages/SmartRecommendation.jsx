@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSmartRecommendations } from "../hooks/useSmartRecommendations";
 import MovieCard from "../components/MovieCard";
 import { Modal } from "react-bootstrap";
@@ -10,9 +10,26 @@ const SmartRecommendation = () => {
   const [genre, setGenre] = useState("");
   const { contentPages, loading } = useSmartRecommendations(type, genre);
 
-  // Modal states
+  // Selected movie onClick
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  // Show full text
   const [showFull, setShowFull] = useState(false);
+  useEffect(() => {
+    if (selectedMovie) {
+      setShowFull(false);
+    }
+  }, [selectedMovie]);
+
+  // Close Modal
+  const handleOnHide = () => {
+    document
+      .querySelectorAll(".movie-card")
+      .forEach((card) => card.classList.remove("hovered"));
+
+    setShowFull(false);
+    setSelectedMovie(null);
+  };
 
   // My list states
   const { addToList, removeFromList, myList } = useList();
@@ -109,7 +126,7 @@ const SmartRecommendation = () => {
       {selectedMovie && (
         <Modal
           show={true}
-          onHide={() => setSelectedMovie(null)}
+          onHide={handleOnHide}
           centered
           size="lg"
           animation={true}

@@ -76,9 +76,26 @@ const BrowseByLanguage = () => {
 };
 
 function Section({ title, items }) {
+  // Selected movie onClick
   const [selectedMovie, setSelectedMovie] = useState(null);
-  // Show full text in modal
+
+  // Show full text
   const [showFull, setShowFull] = useState(false);
+  useEffect(() => {
+    if (selectedMovie) {
+      setShowFull(false);
+    }
+  }, [selectedMovie]);
+
+  // Close Modal
+  const handleOnHide = () => {
+    document
+      .querySelectorAll(".movie-card")
+      .forEach((card) => card.classList.remove("hovered"));
+
+    setShowFull(false);
+    setSelectedMovie(null);
+  };
 
   // My List State
   const { addToList, removeFromList, myList } = useList();
@@ -96,7 +113,7 @@ function Section({ title, items }) {
       {selectedMovie && (
         <Modal
           show={true}
-          onHide={() => setSelectedMovie(null)}
+          onHide={handleOnHide}
           centered
           size="lg"
           animation={true}

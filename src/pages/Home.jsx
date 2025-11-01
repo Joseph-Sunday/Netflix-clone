@@ -407,18 +407,20 @@ const Home = () => {
     fetchUpcomingMovies();
   }, []);
 
+  // Show full text
+  const [showFull, setShowFull] = useState(false);
+
   // Selected movie onClick
   const [selectedMovie, setSelectedMovie] = useState(null);
+
   // Close Modal
   const handleOnHide = () => {
     document
       .querySelectorAll(".movie-card")
       .forEach((card) => card.classList.remove("hovered"));
+    setShowFull(false);
     setSelectedMovie(null);
   };
-
-  // Show full text
-  const [showFull, setShowFull] = useState(false);
 
   // My List Logic
   const { addToList, removeFromList, myList } = useList();

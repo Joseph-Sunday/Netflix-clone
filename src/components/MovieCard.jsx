@@ -28,7 +28,7 @@ const MovieCard = ({ movie, showBanner, onClick }) => {
       onMouseLeave={() => setIsHovered(false)}
       className={`card movie-card bg-dark ${isHovered ? "hovered" : ""}`}
     >
-      {console.log("logo url:", netflixLogo)}
+      {/* {console.log("logo url:", netflixLogo)} */}
       <img
         src={netflixLogo}
         alt="Netflix-Logo"

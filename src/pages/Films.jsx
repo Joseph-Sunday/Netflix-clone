@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import BigMovieCard from "../components/BigMovieCard";
 import MovieCard from "../components/MovieCard";
 import TopTenMovieCard from "../components/TopTenMovieCard";
+import SkeletonMovieCard from "../components/SkeletonMovieCard";
+import SkeletonBigMovieCard from "../components/SkeletonBigMovieCard";
 import { useFilms } from "../hooks/useFilms";
 import { useList } from "../context/ListContext";
 import { Modal } from "react-bootstrap";
@@ -33,18 +35,7 @@ const Films = () => {
   }, []);
 
   // Fetched Films from useFilms Hook
-  const {
-    popular,
-    topRated,
-    trending,
-    upcoming,
-    nowPlaying,
-    trendingThisWeek,
-    action,
-    romance,
-    horror,
-    netflix,
-  } = useFilms();
+  const { films, loading } = useFilms();
 
   // Selected movie onClick
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -82,7 +73,9 @@ const Films = () => {
       {/* Random Movie */}
       <div>
         {randomMovieLoading ? (
-          <p className="fs-sml text-center text-light">Loading..</p>
+          Array.from({ length: 1 }).map((_, i) => (
+            <SkeletonBigMovieCard key={`skeleton-${i}`} />
+          ))
         ) : randomMovieError ? (
           <p>{randomMovieError}</p>
         ) : (
@@ -91,21 +84,31 @@ const Films = () => {
       </div>
 
       {/* Popular Films */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Popular Films
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {popular.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+            Popular Films
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.popular.map((film) => (
+              <MovieCard
+                movie={film}
+                key={film.id}
+                showBanner={Math.random() < 0.4}
+                onClick={setSelectedMovie}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Movie Details Modal */}
       {selectedMovie && (
@@ -317,147 +320,237 @@ const Films = () => {
       )}
 
       {/* Trending Films */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
-          Trending Today
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {trending.slice(0, 9).map((film, index) => (
-            <TopTenMovieCard movie={film} key={film.id} rank={index + 1} />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
+            Trending Today
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.trending.slice(0, 9).map((film, index) => (
+              <TopTenMovieCard movie={film} key={film.id} rank={index + 1} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Top Rated Films */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Top Rated
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {topRated.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+            Top Rated
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.topRated.map((film) => (
+              <MovieCard
+                movie={film}
+                key={film.id}
+                showBanner={Math.random() < 0.4}
+                onClick={setSelectedMovie}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Now Playing Films */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Now In Theaters
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {nowPlaying.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+            Now In Theaters
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.nowPlaying.map((film) => (
+              <MovieCard
+                movie={film}
+                key={film.id}
+                showBanner={Math.random() < 0.4}
+                onClick={setSelectedMovie}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Upcoming Films */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Coming to Theaters
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {upcoming.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+            Coming to Theaters
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.upcoming.map((film) => (
+              <MovieCard
+                movie={film}
+                key={film.id}
+                showBanner={Math.random() < 0.4}
+                onClick={setSelectedMovie}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Action Films */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Action Packed
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {action.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+            Action Packed
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.action.map((film) => (
+              <MovieCard
+                movie={film}
+                key={film.id}
+                showBanner={Math.random() < 0.4}
+                onClick={setSelectedMovie}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Trending This Week */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
-          Trending This Week
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {trendingThisWeek.slice(0, 9).map((film, index) => (
-            <TopTenMovieCard movie={film} key={film.id} rank={index + 1} />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-4 mt-2 mt-lg-4 fs-sml fs-lg-movie-card">
+            Trending This Week
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.trendingThisWeek.slice(0, 9).map((film, index) => (
+              <TopTenMovieCard movie={film} key={film.id} rank={index + 1} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Horror Films */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Horror
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {horror.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+            Horror
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.horror.map((film) => (
+              <MovieCard
+                movie={film}
+                key={film.id}
+                showBanner={Math.random() < 0.4}
+                onClick={setSelectedMovie}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Romance Films */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Romance
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {romance.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+            Romance
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.romance.map((film) => (
+              <MovieCard
+                movie={film}
+                key={film.id}
+                showBanner={Math.random() < 0.4}
+                onClick={setSelectedMovie}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Netflix Films */}
-      <div className="px-lg-5">
-        <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
-          Only on Netflix
-        </h6>
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {netflix.map((film) => (
-            <MovieCard
-              movie={film}
-              key={film.id}
-              showBanner={Math.random() < 0.4}
-              onClick={setSelectedMovie}
-            />
-          ))}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="px-lg-5">
+          <h6 className="card-title text-light ff-text mx-3 mt-4 fs-sml fs-lg-movie-card">
+            Only on Netflix
+          </h6>
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {films.netflix.map((film) => (
+              <MovieCard
+                movie={film}
+                key={film.id}
+                showBanner={Math.random() < 0.4}
+                onClick={setSelectedMovie}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };

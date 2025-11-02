@@ -1,5 +1,6 @@
 import "../css/BrowseByLanguage.css";
 import MovieCard from "../components/MovieCard";
+import SkeletonMovieCard from "../components/SkeletonMovieCard";
 import useLanguageContent from "../hooks/useLanguageContent";
 import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
@@ -7,15 +8,10 @@ import { useList } from "../context/ListContext";
 import { LANGUAGES } from "../data/languages";
 import { getGenreNames } from "../utils/getGenreNames";
 
-// Shuffle Array (of Movies)
-function shuffleArray(array) {
-  return [...array].sort(() => Math.random() - 0.5);
-}
-
 const BrowseByLanguage = () => {
   // Langauge State
   const [language, setLanguage] = useState("en");
-  const content = useLanguageContent(language);
+  const { content } = useLanguageContent(language);
 
   return (
     <>
@@ -51,7 +47,7 @@ const BrowseByLanguage = () => {
 
             <div className="d-md-flex justify-content-center align-items-baseline gap-2">
               <p className="text-light ff-text fs-sml m-0 mt-1">Sort by</p>
-              <div class="btn-group mt-1">
+              <div className="btn-group mt-1">
                 <select className="btn btn-sm text-light border rounded-0 fs-sml">
                   <option value="en">Series</option>
                   <option value="ko">Films</option>
@@ -76,6 +72,7 @@ const BrowseByLanguage = () => {
 };
 
 function Section({ title, items }) {
+  const { loading } = useLanguageContent();
   // Selected movie onClick
   const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -318,24 +315,34 @@ function Section({ title, items }) {
         </Modal>
       )}
 
-      <div className=" container-fluid">
-        <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
-          {items.length > 0 ? (
-            items.map((movie) => (
-              <MovieCard
-                movie={movie}
-                key={movie.id}
-                showBanner={Math.random() < 0.4}
-                onClick={setSelectedMovie}
-              />
-            ))
-          ) : (
-            <p className="text-secondary text-center fs-sml">
-              No results found!
-            </p>
-          )}
+      {loading ? (
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className=" container-fluid">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {items.length > 0 ? (
+              items.map((movie) => (
+                <MovieCard
+                  movie={movie}
+                  key={movie.id}
+                  showBanner={Math.random() < 0.4}
+                  onClick={setSelectedMovie}
+                />
+              ))
+            ) : (
+              <p className="text-secondary text-center fs-sml">
+                No results found!
+              </p>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }

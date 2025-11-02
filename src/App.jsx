@@ -8,6 +8,7 @@ import SearchPage from "./pages/SearchPage";
 import MyList from "./pages/MyList";
 import BrowseByLanguage from "./pages/BrowseByLanguage";
 import SmartRecommendation from "./pages/SmartRecommendation";
+import SkeletonBigMovieCard from "./components/SkeletonBigMovieCard";
 
 import { Toaster } from "react-hot-toast";
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/browsebylanguage" element={<BrowseByLanguage />} />
         <Route path="/smartrecommendation" element={<SmartRecommendation />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/skeleton" element={<SkeletonBigMovieCard />} />
       </Routes>
       <Footer />
     </>

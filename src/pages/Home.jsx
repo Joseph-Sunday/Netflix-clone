@@ -23,6 +23,7 @@ import {
 import { useEffect, useState } from "react";
 import TopTenMovieCard from "../components/TopTenMovieCard";
 import SkeletonMovieCard from "../components/SkeletonMovieCard";
+import SkeletonBigMovieCard from "../components/SkeletonBigMovieCard";
 import { Modal } from "react-bootstrap";
 import "../css/MovieCardModal.css";
 import { useList } from "../context/ListContext";
@@ -438,9 +439,9 @@ const Home = () => {
       {/* Random Movie */}
       <div>
         {randomMovieLoading ? (
-          <div className="Loading text-center ff-text rounded-0">
-            Loading...
-          </div>
+          Array.from({ length: 1 }).map((_, i) => (
+            <SkeletonBigMovieCard key={`skeleton-popular-${i}`} />
+          ))
         ) : randomMovieError ? (
           <p>{randomMovieError}</p>
         ) : (
@@ -451,9 +452,13 @@ const Home = () => {
       {/* Popular Movies */}
       <div>
         {popularMoviesLoading ? (
-          <p className="text-light text-center fs-sml mt-lg ff-text">
-            Loading...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-popular-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : popularMoviesError ? (
           <p className="text-danger text-center mt-lg fs-sml">
             {popularMoviesError}
@@ -689,9 +694,13 @@ const Home = () => {
       {/* Anime Shows */}
       <div>
         {animeShowsLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading anime shows...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : animeShowsError ? (
           <p className="text-danger mt-lg fs-sml">{animeShowsError}</p>
         ) : (
@@ -716,9 +725,13 @@ const Home = () => {
       {/* Horror Movies */}
       <div>
         {horrorMoviesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading horror shows...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : horrorMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{horrorMoviesError}</p>
         ) : (
@@ -743,9 +756,13 @@ const Home = () => {
       {/* Anime Movies */}
       <div>
         {animeMoviesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading anime movies...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : animeMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{animeMoviesError}</p>
         ) : (
@@ -770,9 +787,13 @@ const Home = () => {
       {/* Trending Movies */}
       <div>
         {trendingMoviesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading Trending Movies..
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : trendingMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{trendingMoviesError}</p>
         ) : (
@@ -797,9 +818,13 @@ const Home = () => {
       {/* Romance Movies */}
       <div>
         {romanceMoviesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading romance movies...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : romanceMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{romanceMoviesError}</p>
         ) : (
@@ -824,9 +849,13 @@ const Home = () => {
       {/* Netflix Only */}
       <div>
         {netflixMoviesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading Netflix movies...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : netflixMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{netflixMoviesError}</p>
         ) : (
@@ -851,9 +880,13 @@ const Home = () => {
       {/* Sci-fi Movies */}
       <div>
         {scifiMoviesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading Sci-fi movies...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : scifiMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{scifiMoviesError}</p>
         ) : (
@@ -878,9 +911,13 @@ const Home = () => {
       {/* Drama Series */}
       <div>
         {dramaSeriesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading Drama series...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : dramaSeriesError ? (
           <p className="text-danger mt-lg fs-sml">{dramaSeriesError}</p>
         ) : (
@@ -905,9 +942,13 @@ const Home = () => {
       {/* Trending Tv Shows */}
       <div>
         {trendingShowsLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading..
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : trendingShowsError ? (
           <p className="text-danger mt-lg fs-sml">{trendingShowsError}</p>
         ) : (
@@ -932,9 +973,13 @@ const Home = () => {
       {/* Award Winning Movies */}
       <div>
         {awardWinnersLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading Award winners...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : awardWinnersError ? (
           <p className="text-danger mt-lg fs-sml">{awardWinnersError}</p>
         ) : (
@@ -959,9 +1004,13 @@ const Home = () => {
       {/* Hollywood Movies */}
       <div>
         {hollywoodMoviesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading Hollywood movies...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : hollywoodMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{hollywoodMoviesError}</p>
         ) : (
@@ -986,9 +1035,13 @@ const Home = () => {
       {/* Adult Animations */}
       <div>
         {adultAnimationsLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading Adult Animations...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : adultAnimationsError ? (
           <p className="text-danger mt-lg fs-sml">{adultAnimationsError}</p>
         ) : (
@@ -1013,9 +1066,13 @@ const Home = () => {
       {/* Popular Tv Shows */}
       <div>
         {popularShowsLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : popularShowsError ? (
           <p className="text-danger mt-lg fs-sml">{popularShowsError}</p>
         ) : (
@@ -1040,9 +1097,13 @@ const Home = () => {
       {/* Trending This Week */}
       <div>
         {trendingThisWeekLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading..
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : trendingThisWeekError ? (
           <p className="text-danger mt-lg fs-sml">{trendingThisWeekError}</p>
         ) : (
@@ -1067,9 +1128,13 @@ const Home = () => {
       {/* Upcoming Movies */}
       <div>
         {upcomingMoviesLoading ? (
-          <p className="text-center text-light mt-lg fs-sml ff-text">
-            Loading...
-          </p>
+          <div className="px-lg-5">
+            <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <SkeletonMovieCard key={`skeleton-${i}`} />
+              ))}
+            </div>
+          </div>
         ) : upcomingMoviesError ? (
           <p className="text-danger mt-lg fs-sml">{upcomingMoviesError}</p>
         ) : (

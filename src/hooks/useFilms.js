@@ -20,6 +20,8 @@ export function useFilms() {
     netflix: [],
   });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getFilms = async () => {
       try {
@@ -68,11 +70,13 @@ export function useFilms() {
         });
       } catch (error) {
         console.error("Error fetching films:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     getFilms();
   }, []);
 
-  return films;
+  return { films, loading };
 }

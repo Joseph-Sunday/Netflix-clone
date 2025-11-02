@@ -19,6 +19,7 @@ export function useSeries() {
     netflix: [],
     netflixTrending: [],
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getSeries = async () => {
@@ -51,9 +52,6 @@ export function useSeries() {
           fetchSeries("/discover/tv?with_networks=213&sort_by=popularity.desc"),
         ]);
 
-        // Logging fetched data
-        console.log("netflix trending:", netflixTrendingSeries.results);
-
         setSeries({
           popular: shuffleArray(popularSeries.results),
           trending: shuffleArray(trendingSeries.results),
@@ -68,11 +66,13 @@ export function useSeries() {
         });
       } catch (error) {
         console.error("Error fetching series:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     getSeries();
   }, []);
 
-  return series;
+  return { series, loading };
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSmartRecommendations } from "../hooks/useSmartRecommendations";
 import MovieCard from "../components/MovieCard";
+import SkeletonMovieCard from "../components/SkeletonMovieCard";
 import { Modal } from "react-bootstrap";
 import { useList } from "../context/ListContext";
 import { getGenreNames } from "../utils/getGenreNames";
@@ -94,9 +95,13 @@ const SmartRecommendation = () => {
       </section>
 
       {loading ? (
-        <p className="text-light text-center fs-sml">
-          Loading {type === "movie" ? "Films" : "Series"}...
-        </p>
+        <div className="px-lg-5">
+          <div className="container-fluid my-2 d-flex overflow-auto gap-2 scroll-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonMovieCard key={`skeleton-${i}`} />
+            ))}
+          </div>
+        </div>
       ) : (
         <div className="container-fluid">
           {contentPages.length > 0 ? (

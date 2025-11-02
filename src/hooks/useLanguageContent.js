@@ -20,6 +20,8 @@ function useLanguageContent(language) {
     animeSeries: [],
   });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -90,13 +92,15 @@ function useLanguageContent(language) {
         });
       } catch (error) {
         console.error("Error fetching language content", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [language]);
 
-  return content;
+  return { content, loading };
 }
 
 export default useLanguageContent;

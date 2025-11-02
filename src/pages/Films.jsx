@@ -74,7 +74,7 @@ const Films = () => {
       <div>
         {randomMovieLoading ? (
           Array.from({ length: 1 }).map((_, i) => (
-            <SkeletonBigMovieCard key={`skeleton-${i}`} />
+            <SkeletonBigMovieCard key={`skeleton${i}`} />
           ))
         ) : randomMovieError ? (
           <p>{randomMovieError}</p>
